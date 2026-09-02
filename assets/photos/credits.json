@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "id": 32416015,
+    "photographer": "Gül Işık",
+    "url": "https://www.pexels.com/photo/cozy-coffee-shop-interior-in-yokosuka-32416015/",
+    "alt": "A stylish coffee shop interior in Yokosuka, Japan with modern decor and coffee brewing equipment.",
+    "src_large2x": "https://images.pexels.com/photos/32416015/pexels-photo-32416015.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "matcha": {
+    "id": 34334882,
+    "photographer": "Maria Eduarda Godoi",
+    "url": "https://www.pexels.com/photo/heart-shaped-latte-art-on-matcha-green-tea-34334882/",
+    "alt": "Aesthetic matcha green tea with heart latte art in a cup on wooden table.",
+    "src_large2x": "https://images.pexels.com/photos/34334882/pexels-photo-34334882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "coffee": {
+    "id": 4425744,
+    "photographer": "Thomas Plets",
+    "url": "https://www.pexels.com/photo/water-pouring-over-coffee-filter-4425744/",
+    "alt": "Close-up of freshly brewed pour over coffee on a wooden countertop.",
+    "src_large2x": "https://images.pexels.com/photos/4425744/pexels-photo-4425744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "tofu_pudding": {
+    "id": 5652186,
+    "photographer": "Kai-Chieh Chan",
+    "url": "https://www.pexels.com/photo/bowl-of-traditional-food-5652186/",
+    "alt": "Delicious traditional sweet soup with soft tofu, syrup, and grains in a decorative blue bowl on a wooden surface.",
+    "src_large2x": "https://images.pexels.com/photos/5652186/pexels-photo-5652186.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "interior_wide": {
+    "id": 31910449,
+    "photographer": "Gu Ko",
+    "url": "https://www.pexels.com/photo/cozy-coffee-shop-interior-in-tokyo-31910449/",
+    "alt": "Bright and cozy coffee shop in Shinjuku, Tokyo featuring modern decor and natural light.",
+    "src_large2x": "https://images.pexels.com/photos/31910449/pexels-photo-31910449.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "barista": {
+    "id": 32416013,
+    "photographer": "Gül Işık",
+    "url": "https://www.pexels.com/photo/barista-making-coffee-in-yokosuka-cafe-32416013/",
+    "alt": "A barista wearing a blue hat operates a coffee machine in a stylish Yokosuka café setting.",
+    "src_large2x": "https://images.pexels.com/photos/32416013/pexels-photo-32416013.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "matcha_prep": {
+    "id": 7113866,
+    "photographer": "KATRIN  BOLOVTSOVA",
+    "url": "https://www.pexels.com/photo/hand-holding-a-bowl-with-matcha-powder-7113866/",
+    "alt": "A hand holding a bowl of vibrant green matcha powder with a wooden spoon, ready for tea preparation.",
+    "src_large2x": "https://images.pexels.com/photos/7113866/pexels-photo-7113866.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "ceramics": {
+    "id": 37378236,
+    "photographer": "Jennifer Ajero",
+    "url": "https://www.pexels.com/photo/rustic-wooden-shelf-with-ceramics-and-earthenware-37378236/",
+    "alt": "Rustic wooden shelf displaying brown ceramic cups, teapot, and stack of plates.",
+    "src_large2x": "https://images.pexels.com/photos/37378236/pexels-photo-37378236.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "matcha_cheesecake": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "gal_kaisen_takeaway": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "gal_kaisen_2": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "gal_kaisen_3": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "gal_kaisen_table": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "gal_soy_dip": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "gal_roastbeef_2": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "gal_cheese_gyudon_2": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "gal_kaisen_4": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "gal_beef_salad": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "gal_beef_salad_2": {
+    "source": "Eigenes Foto von RAUM"
+  }
+}

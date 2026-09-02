@@ -1,0 +1,45 @@
+# RAUM — cache navigateur (Apache). À utiliser si le site est déployé sur un
+# hébergement compatible .htaccess (ex. la plupart des hébergements mutuels).
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(jpg|jpeg|png|webp|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+
+  # En-têtes de sécurité standards. "always" applique aussi aux réponses d'erreur.
+  # CSP : le site n'a ni script externe ni script inline (hors JSON-LD, non concerné
+  # par script-src), donc script-src reste strict. 'unsafe-inline' sur style-src est
+  # nécessaire à cause des attributs style="" ponctuels déjà présents dans les pages
+  # (aucune saisie utilisateur n'y est jamais injectée, donc pas de vecteur d'injection réel).
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+  Header always set X-Frame-Options "DENY"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+  # Filtre XSS legacy des vieux navigateurs : désactivé (0) plutôt qu'activé, recommandation
+  # OWASP actuelle — l'activer a introduit par le passé des failles dans certains navigateurs.
+  Header always set X-XSS-Protection "0"
+  # HSTS : sans effet tant que le site n'est pas servi en HTTPS, à activer une fois le cas.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>

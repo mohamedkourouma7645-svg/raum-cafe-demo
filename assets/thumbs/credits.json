@@ -1,0 +1,95 @@
+{
+  "mapo_tofu_don": {
+    "id": 20943933,
+    "photographer": "Change C.C",
+    "url": "https://www.pexels.com/photo/close-up-of-a-person-eating-a-meal-20943933/",
+    "alt": "Close-up of a flavorful tofu dish with sauce in a traditional pot, perfect for a culinary experience."
+  },
+  "kaisen_don": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "roastbeef_don": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "cheese_gyudon": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "hojicha_panna_cotta": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "matcha_cheesecake": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "matcha_latte": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "matcha_iced_latte": {
+    "source": "Eigenes Foto von RAUM"
+  },
+  "espresso": {
+    "id": 4862099,
+    "photographer": "Abdulrhman Alkady",
+    "url": "https://www.pexels.com/photo/a-coffee-on-a-drinking-glass-4862099/",
+    "alt": "A close-up of a rich espresso in a glass surrounded by coffee beans on a wooden table.",
+    "approx": false
+  },
+  "cappuccino": {
+    "id": 11385490,
+    "photographer": "Alexey Demidov",
+    "url": "https://www.pexels.com/photo/with-coffee-art-in-a-cup-11385490/",
+    "alt": "A beautifully crafted cappuccino with intricate latte art, viewed from above on a wooden table.",
+    "approx": false
+  },
+  "black_sugar_iced_latte": {
+    "id": 33112296,
+    "photographer": "Sóc Năng Động",
+    "url": "https://www.pexels.com/photo/iced-coffee-on-wooden-tray-with-latte-art-design-33112296/",
+    "alt": "Close-up of iced coffee with cream and cinnamon on a wooden tray, perfect for coffee enthusiasts.",
+    "approx": false
+  },
+  "green_tea": {
+    "id": 4390022,
+    "photographer": "ric perin",
+    "url": "https://www.pexels.com/photo/green-tea-with-dry-brew-and-teapot-4390022/",
+    "alt": "From above of cup with green tea near dry and fresh leaves with ceramic teapot on white table",
+    "approx": false
+  },
+  "hoji_tea": {
+    "id": 1493080,
+    "photographer": "Hasan Albari",
+    "url": "https://www.pexels.com/photo/close-up-photo-of-steaming-black-tea-in-glass-1493080/",
+    "alt": "Close-up of steaming Turkish tea in a traditional glass, creating a cozy and inviting atmosphere.",
+    "approx": true
+  },
+  "yuzuka": {
+    "id": 12987271,
+    "photographer": "Srattha Nualsate",
+    "url": "https://www.pexels.com/photo/clear-drinking-glass-with-yellow-liquid-12987271/",
+    "alt": "Close-up of a refreshing yellow fizzy drink in a glass with ice cubes, perfect for summer refreshment.",
+    "approx": true
+  },
+  "sinalco_cola": {
+    "id": 8880742,
+    "photographer": "Ron Lach",
+    "url": "https://www.pexels.com/photo/glass-of-soda-with-ice-cubes-8880742/",
+    "alt": "Cooling beverage with fizzy bubbles and ice cubes in a clear glass.",
+    "approx": true
+  },
+  "apfelschorle": {
+    "id": 8228301,
+    "photographer": "Abdulrhman Alkady",
+    "url": "https://www.pexels.com/photo/a-glass-of-apple-juice-8228301/",
+    "alt": "Tall glass of fresh green apple juice garnished with apple slices, accompanied by whole green apples on a dark surface.",
+    "approx": true
+  },
+  "wasser": {
+    "id": 7402619,
+    "photographer": "cottonbro studio",
+    "url": "https://www.pexels.com/photo/a-glass-of-water-on-the-table-7402619/",
+    "alt": "Simple and elegant composition of a water glass on a modern wooden table indoors.",
+    "approx": false
+  },
+  "handbrew": {
+    "note": "Gleiches Foto wie assets/photos/coffee.jpg (Thomas Plets / Pexels)"
+  }
+}
