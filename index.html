@@ -40,10 +40,32 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
-<div class="order-badge" id="order-badge" hidden>
-  <div>
-    <span class="order-badge-label">Ihre Bestellung</span>
+<button type="button" class="order-badge" id="order-badge" hidden aria-haspopup="dialog">
+  <span class="order-badge-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+    <span class="order-badge-count" id="order-badge-count" hidden>0</span>
+  </span>
+  <span class="order-badge-text">
+    <span class="order-badge-label" id="order-badge-label">Ihre Bestellung</span>
     <span class="order-badge-number" id="order-badge-number"></span>
+  </span>
+</button>
+
+<div class="cart-scrim" id="cart-scrim" hidden></div>
+<div class="cart-panel" id="cart-panel" hidden role="dialog" aria-modal="true" aria-labelledby="cart-panel-title">
+  <div class="cart-panel-handle"></div>
+  <div class="cart-panel-header">
+    <h2 id="cart-panel-title">Ihre Bestellung</h2>
+    <button type="button" class="cart-close" id="cart-close" aria-label="Schließen">&times;</button>
+  </div>
+  <div class="cart-panel-body">
+    <ul class="cart-items" id="cart-items"></ul>
+    <p class="cart-empty" id="cart-empty" hidden>Ihr Warenkorb ist noch leer &mdash; f&uuml;gen Sie Gerichte aus dem Men&uuml; hinzu.</p>
+    <div class="cart-confirm" id="cart-confirm" hidden></div>
+  </div>
+  <div class="cart-panel-footer" id="cart-footer">
+    <div class="cart-total"><span>Gesamt</span><strong id="cart-total-amount">0,00 &euro;</strong></div>
+    <button type="button" class="btn btn-solid cart-checkout" id="cart-checkout" disabled>Bestellung aufgeben</button>
   </div>
 </div>
 

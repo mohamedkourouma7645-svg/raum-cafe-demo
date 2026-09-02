@@ -112,13 +112,26 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Header ---------- */
 header.site-header {
-  background: rgba(250, 247, 242, 0.86);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--bone);
   border-bottom: 1px solid var(--line);
   position: sticky; top: 0; z-index: 30;
 }
-:root[data-theme="dark"] header.site-header { background: rgba(28, 26, 23, 0.86); }
+:root[data-theme="dark"] header.site-header { background: var(--bone); }
+/* Le flou en arrière-plan (backdrop-filter) coûte cher à recalculer à chaque frame
+   sur un élément "sticky" pendant le défilement — sensible sur mobile (Android
+   milieu de gamme surtout), ça peut suffire à donner une impression de scroll
+   saccadé/"cassé". On le réserve donc aux écrans assez larges pour absorber ce coût. */
+@media (min-width: 861px) {
+  header.site-header {
+    background: rgba(250, 247, 242, 0.86);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  :root[data-theme="dark"] header.site-header { background: rgba(28, 26, 23, 0.86); }
+}
+@media (min-width: 861px) {
+  :root[data-theme="dark"] header.site-header { background: rgba(28, 26, 23, 0.86); }
+}
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) header.site-header { background: rgba(28, 26, 23, 0.86); }
 }
@@ -169,6 +182,8 @@ nav.main-nav a[aria-current="page"]::after { transform: scaleX(1); }
 .nav-toggle {
   display: none; background: none; border: 1px solid var(--line); border-radius: var(--radius);
   color: var(--ink); padding: 8px 12px; cursor: pointer;
+  width: 44px; height: 44px; align-items: center; justify-content: center; font-size: 1.1rem;
+  touch-action: manipulation;
 }
 
 @media (max-width: 860px) {
@@ -176,11 +191,14 @@ nav.main-nav a[aria-current="page"]::after { transform: scaleX(1); }
   .nav-toggle { display: inline-flex; }
   .nav-inner.open nav.main-nav ul {
     display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--bone); backdrop-filter: blur(16px);
+    /* Fond déjà opaque : pas de backdrop-filter ici (rien de transparent à flouter,
+       coût GPU inutile qui contribuait au scroll saccadé sur mobile). */
+    background: var(--bone);
     padding: 8px 32px 22px; gap: 2px; border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow);
+    max-height: calc(100dvh - 100%); overflow-y: auto;
   }
-  nav.main-nav a { padding: 12px 0; }
+  nav.main-nav a { padding: 14px 0; font-size: 1rem; }
   nav.main-nav a::after { left: 0; right: 0; }
 }
 
@@ -194,6 +212,12 @@ nav.main-nav a[aria-current="page"]::after { transform: scaleX(1); }
 .hero-full {
   position: relative; height: min(92vh, 900px); min-height: 560px;
   display: flex; align-items: flex-end; overflow: hidden;
+}
+@supports (height: 92dvh) {
+  /* dvh suit la barre d'adresse mobile (Safari/Chrome) qui se rétracte au scroll ;
+     92vh se base sur la hauteur MAXIMALE (barre rétractée) et peut donc pousser le
+     bas du hero (bouton, note tarifaire) hors de l'écran visible au premier chargement. */
+  .hero-full { height: min(92dvh, 900px); }
 }
 .hero-full img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
@@ -333,6 +357,7 @@ section.block.alt { background: var(--bone-2); }
   border: 1px solid var(--line-strong); background: var(--surface); border-radius: 999px;
   padding: 7px 16px; font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 600;
   color: var(--ink-dim); cursor: pointer; white-space: nowrap; font-variant-numeric: tabular-nums;
+  min-height: 44px; touch-action: manipulation;
   transition: background 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.15s var(--ease);
 }
 .size-btn:hover { border-color: var(--matcha-deep); color: var(--ink); }
@@ -354,7 +379,7 @@ section.block.alt { background: var(--bone-2); }
   border: 1px solid var(--line-strong); background: transparent; border-radius: 999px;
   padding: 7px 16px; font-family: 'Manrope', sans-serif; font-size: 0.8rem; font-weight: 600;
   color: var(--ink-dim); cursor: pointer; transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; touch-action: manipulation;
 }
 .order-toggle::after { content: "▾"; font-size: 0.7rem; transition: transform 0.25s var(--ease); }
 .order-toggle[aria-expanded="true"]::after { transform: rotate(180deg); }
@@ -364,33 +389,132 @@ section.block.alt { background: var(--bone-2); }
 .order-option {
   border: 1px solid var(--line); background: var(--bone-2); border-radius: 999px;
   padding: 7px 14px; font-family: 'Manrope', sans-serif; font-size: 0.78rem; font-weight: 600;
-  color: var(--ink); text-decoration: none; cursor: pointer;
+  color: var(--ink); text-decoration: none; cursor: pointer; display: inline-flex; align-items: center;
+  min-height: 44px; touch-action: manipulation;
   transition: background 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 .order-option:hover { background: var(--matcha-pale); border-color: var(--matcha-deep); color: var(--matcha-deep); }
-.order-confirm { margin: 8px 0 0; font-size: 0.8rem; color: var(--matcha-deep); font-weight: 600; display: none; line-height: 1.5; }
-.order-confirm.show { display: block; }
-.order-confirm strong { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.05rem; }
 
-/* ---------- Badge de commande persistant ---------- */
+@media (max-width: 560px) {
+  /* Boutons pleine largeur et empilés : plus faciles à viser du pouce qu'une
+     rangée de petites pastilles serrées les unes contre les autres. */
+  .order-options { flex-direction: column; }
+  .order-option { justify-content: center; width: 100%; padding: 11px 14px; font-size: 0.85rem; }
+  .order-toggle { width: 100%; justify-content: center; }
+}
+/* Confirmation légère "✓ Hinzugefügt" affichée brièvement au niveau du plat lui-même
+   après un ajout au panier (la confirmation de commande complète, elle, apparaît dans
+   le panier au moment de valider — voir plus bas). */
+.order-added { margin: 8px 0 0; font-size: 0.8rem; color: var(--matcha-deep); font-weight: 600; display: none; line-height: 1.5; }
+.order-added.show { display: block; }
+
+/* ---------- Badge panier / commande persistant ---------- */
 .order-badge {
   position: fixed; right: 20px; bottom: 20px; z-index: 45;
   background: var(--ink); color: var(--bone); border-radius: 999px;
-  padding: 12px 22px; display: flex; align-items: center; gap: 12px;
-  box-shadow: var(--shadow); text-decoration: none;
-  transition: transform 0.2s var(--ease);
+  padding: 10px 20px 10px 16px; display: flex; align-items: center; gap: 10px;
+  box-shadow: var(--shadow); text-decoration: none; border: none; cursor: pointer;
+  font: inherit; transition: transform 0.2s var(--ease);
+  min-height: 48px; touch-action: manipulation;
 }
 .order-badge:hover { transform: translateY(-2px); }
 .order-badge[hidden] { display: none; }
+.order-badge-icon { display: flex; align-items: center; justify-content: center; position: relative; flex-shrink: 0; }
+.order-badge-icon svg { width: 22px; height: 22px; }
+.order-badge-count {
+  position: absolute; top: -8px; right: -9px; background: var(--matcha);
+  color: var(--ink); font-size: 0.68rem; font-weight: 700; min-width: 18px; height: 18px;
+  border-radius: 999px; display: flex; align-items: center; justify-content: center; padding: 0 4px;
+}
+/* Sans ça, [hidden] ne suffit pas à masquer l'élément : une règle d'auteur (ici
+   display:flex ci-dessus) l'emporte toujours sur la feuille de style par défaut
+   du navigateur, même à spécificité égale — la pastille resterait visible à 0. */
+.order-badge-count[hidden] { display: none; }
+.order-badge-text { text-align: left; }
 .order-badge-label {
   font-family: 'Manrope', sans-serif; font-size: 0.68rem; text-transform: uppercase;
   letter-spacing: 0.6px; opacity: 0.7; display: block;
 }
-.order-badge-number { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.35rem; font-weight: 600; display: block; }
+.order-badge-number { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.2rem; font-weight: 600; display: block; }
 
 @media (max-width: 560px) {
-  .order-badge { right: 14px; bottom: 14px; padding: 10px 16px; }
+  .order-badge { right: 14px; bottom: 14px; padding: 9px 16px 9px 14px; }
 }
+
+/* ---------- Panier (bottom sheet) ---------- */
+.cart-scrim {
+  position: fixed; inset: 0; background: rgba(20, 18, 15, 0.45); z-index: 49;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s var(--ease);
+}
+.cart-scrim.show { opacity: 1; pointer-events: auto; }
+.cart-scrim[hidden] { display: none; }
+
+.cart-panel {
+  position: fixed; left: 50%; bottom: 0; z-index: 50; width: 100%; max-width: 460px;
+  background: var(--surface); border-radius: 20px 20px 0 0; box-shadow: var(--shadow);
+  transform: translate(-50%, 100%); transition: transform 0.35s var(--ease);
+  max-height: 88dvh; display: flex; flex-direction: column;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.cart-panel.show { transform: translate(-50%, 0); }
+.cart-panel[hidden] { display: none; }
+
+.cart-panel-handle { width: 40px; height: 4px; border-radius: 999px; background: var(--line-strong); margin: 12px auto 4px; flex-shrink: 0; }
+
+.cart-panel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 20px 16px; border-bottom: 1px solid var(--line); flex-shrink: 0;
+}
+.cart-panel-header h2 { font-size: 1.3rem; margin: 0; }
+.cart-close {
+  background: none; border: 1px solid var(--line); border-radius: 50%;
+  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  color: var(--ink-dim); cursor: pointer; font-size: 1rem; touch-action: manipulation;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.cart-close:hover { border-color: var(--matcha-deep); color: var(--ink); }
+
+.cart-panel-body { overflow-y: auto; padding: 12px 20px; flex: 1; -webkit-overflow-scrolling: touch; }
+.cart-empty { color: var(--ink-dim); font-size: 0.92rem; text-align: center; padding: 32px 8px; margin: 0; }
+.cart-empty[hidden] { display: none; }
+
+.cart-items { list-style: none; margin: 0; padding: 0; }
+.cart-item {
+  display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line);
+}
+.cart-item:last-child { border-bottom: none; }
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-family: 'Cormorant', serif; font-size: 1.1rem; display: block; }
+.cart-item-size { color: var(--ink-dim); font-size: 0.82rem; display: block; margin-top: 2px; }
+.cart-item-price { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.cart-item-qty {
+  display: flex; align-items: center; gap: 6px; border: 1px solid var(--line-strong);
+  border-radius: 999px; padding: 4px; flex-shrink: 0;
+}
+.cart-qty-btn {
+  width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--bone-2);
+  color: var(--ink); font-size: 1rem; font-weight: 700; cursor: pointer; touch-action: manipulation;
+  display: flex; align-items: center; justify-content: center; line-height: 1;
+  transition: background 0.2s var(--ease);
+}
+.cart-qty-btn:hover { background: var(--matcha-pale); }
+.cart-item-qty span { min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.cart-panel-footer {
+  border-top: 1px solid var(--line); padding: 16px 20px; flex-shrink: 0;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.cart-panel-footer[hidden] { display: none; }
+.cart-total { display: flex; justify-content: space-between; align-items: baseline; font-size: 1rem; }
+.cart-total strong { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.5rem; font-weight: 600; }
+.cart-checkout { width: 100%; min-height: 50px; }
+.cart-checkout:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.cart-confirm { padding: 8px 20px 20px; overflow-y: auto; }
+.cart-confirm[hidden] { display: none; }
+.cart-confirm-msg { font-size: 0.95rem; color: var(--matcha-deep); font-weight: 600; line-height: 1.6; margin: 0 0 4px; }
+.cart-confirm-msg strong { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.3rem; }
+.cart-confirm-list { color: var(--ink-dim); font-size: 0.86rem; margin: 0 0 16px; }
 
 /* ---------- Avis nach der Bestellung ---------- */
 .review-prompt {
@@ -482,6 +606,9 @@ blockquote.pull {
 @media (max-width: 860px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
   .gallery-item.w2, .gallery-item.w3 { grid-column: span 2; }
+  /* Pas de vrai ":hover" au doigt sur mobile : sans ça, la légende (crédit photo)
+     ne s'affiche jamais — elle semble "manquante" plutôt que juste masquée. */
+  .gallery-item .gallery-label { opacity: 1; }
 }
 
 /* ---------- Forms ---------- */
@@ -491,9 +618,12 @@ form .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 form label { display: block; font-weight: 600; font-size: 0.8rem; color: var(--ink-dim); margin-bottom: 7px; letter-spacing: 0.2px; }
 form input, form textarea {
   width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius);
-  font: inherit; font-size: 0.98rem; background: var(--bone); color: var(--ink);
+  font: inherit; font-size: 1rem; background: var(--bone); color: var(--ink);
   transition: border-color 0.25s var(--ease);
 }
+/* En dessous de 16px, Safari iOS zoome automatiquement la page au focus d'un champ
+   (jugé "trop petit pour lire") — désagréable et donne l'impression que le texte
+   est mal dimensionné. 1rem = 16px avec le body font-size par défaut de ce site. */
 form textarea { resize: vertical; min-height: 120px; }
 form input:focus, form textarea:focus { outline: none; border-color: var(--matcha); }
 form input[aria-invalid="true"], form textarea[aria-invalid="true"] { border-color: #a5473a; }

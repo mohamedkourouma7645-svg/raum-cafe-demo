@@ -15,10 +15,32 @@
 </head>
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
-<div class="order-badge" id="order-badge" hidden>
-  <div>
-    <span class="order-badge-label">Ihre Bestellung</span>
+<button type="button" class="order-badge" id="order-badge" hidden aria-haspopup="dialog">
+  <span class="order-badge-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+    <span class="order-badge-count" id="order-badge-count" hidden>0</span>
+  </span>
+  <span class="order-badge-text">
+    <span class="order-badge-label" id="order-badge-label">Ihre Bestellung</span>
     <span class="order-badge-number" id="order-badge-number"></span>
+  </span>
+</button>
+
+<div class="cart-scrim" id="cart-scrim" hidden></div>
+<div class="cart-panel" id="cart-panel" hidden role="dialog" aria-modal="true" aria-labelledby="cart-panel-title">
+  <div class="cart-panel-handle"></div>
+  <div class="cart-panel-header">
+    <h2 id="cart-panel-title">Ihre Bestellung</h2>
+    <button type="button" class="cart-close" id="cart-close" aria-label="Schließen">&times;</button>
+  </div>
+  <div class="cart-panel-body">
+    <ul class="cart-items" id="cart-items"></ul>
+    <p class="cart-empty" id="cart-empty" hidden>Ihr Warenkorb ist noch leer &mdash; f&uuml;gen Sie Gerichte aus dem Men&uuml; hinzu.</p>
+    <div class="cart-confirm" id="cart-confirm" hidden></div>
+  </div>
+  <div class="cart-panel-footer" id="cart-footer">
+    <div class="cart-total"><span>Gesamt</span><strong id="cart-total-amount">0,00 &euro;</strong></div>
+    <button type="button" class="btn btn-solid cart-checkout" id="cart-checkout" disabled>Bestellung aufgeben</button>
   </div>
 </div>
 
@@ -70,22 +92,13 @@
             <button type="button" class="size-btn" aria-pressed="false">Groß · 21,80 €</button>
           </div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Kaisen Don">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -97,22 +110,13 @@
             <button type="button" class="size-btn" aria-pressed="false">Groß · 20,00 €</button>
           </div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Roastbeef Don">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -124,22 +128,13 @@
             <button type="button" class="size-btn" aria-pressed="false">Groß · 19,60 €</button>
           </div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Mapo Tofu Don">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -151,22 +146,13 @@
             <button type="button" class="size-btn" aria-pressed="false">Groß · 19,80 €</button>
           </div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Cheese Gyūdon">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
 
@@ -181,22 +167,13 @@
           <div class="desc"></div>
           <div class="price">4,00 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Matcha Cheesecake">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -205,22 +182,13 @@
           <div class="desc"></div>
           <div class="price">3,80 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Tofu Pudding">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -229,22 +197,13 @@
           <div class="desc"></div>
           <div class="price">3,80 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Hojicha Panna Cotta">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
 
@@ -260,22 +219,13 @@
           <div class="desc"></div>
           <div class="price">2,00 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Espresso">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -284,22 +234,13 @@
           <div class="desc"></div>
           <div class="price">3,50 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Cappuccino">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -308,22 +249,13 @@
           <div class="desc"></div>
           <div class="price">4,20 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Black Sugar Iced Latte">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -332,22 +264,13 @@
           <div class="desc"></div>
           <div class="price">4,20 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Matcha Latte">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -356,22 +279,13 @@
           <div class="desc"></div>
           <div class="price">4,40 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Matcha Iced Latte">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -380,22 +294,13 @@
           <div class="desc">300 ml, langsam per Filter aufgegossen.</div>
           <div class="price">6,20 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Handbrew">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
 
@@ -406,22 +311,13 @@
           <div class="desc"></div>
           <div class="price">3,00 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Green Tea">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -433,22 +329,13 @@
             <span class="price-line"><span class="price-label">Eis</span>3,20 €</span>
           </div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Hoji Tea">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -457,22 +344,13 @@
           <div class="desc">Nur als Eisgetränk erhältlich.</div>
           <div class="price">4,20 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Yuzuka">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
 
@@ -483,22 +361,13 @@
           <div class="desc"></div>
           <div class="price">2,80 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Sinalco Cola">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -507,22 +376,13 @@
           <div class="desc"></div>
           <div class="price">2,80 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Apfelschorle">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
         <div class="menu-row has-photo reveal">
@@ -531,22 +391,13 @@
           <div class="desc"></div>
           <div class="price">2,60 €</div>
         
-          <div class="order-menu">
+          <div class="order-menu" data-dish-name="Wasser">
             <button type="button" class="order-toggle" aria-haspopup="true" aria-expanded="false">Bestellen</button>
             <div class="order-options" hidden>
-              <button type="button" class="order-option" data-mode="vor-ort">Vor Ort genießen</button>
+              <button type="button" class="order-option" data-mode="cart">In den Warenkorb</button>
               <a class="order-option" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
-            <p class="order-confirm" role="status"></p>
-            <div class="review-prompt">
-              <p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>
-              <div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">
-                <button type="button" class="review-emoji" data-sentiment="happy" aria-label="Zufrieden">😊</button>
-                <button type="button" class="review-emoji" data-sentiment="neutral" aria-label="Geht so">😐</button>
-                <button type="button" class="review-emoji" data-sentiment="sad" aria-label="Enttäuscht">😞</button>
-              </div>
-              <div class="review-followup" hidden></div>
-            </div>
+            <p class="order-added" role="status"></p>
           </div>
         </div>
 
