@@ -196,7 +196,6 @@ nav.main-nav a[aria-current="page"]::after { transform: scaleX(1); }
     background: var(--bone);
     padding: 8px 32px 22px; gap: 2px; border-bottom: 1px solid var(--line);
     box-shadow: var(--shadow);
-    max-height: calc(100dvh - 100%); overflow-y: auto;
   }
   nav.main-nav a { padding: 14px 0; font-size: 1rem; }
   nav.main-nav a::after { left: 0; right: 0; }
@@ -208,16 +207,30 @@ nav.main-nav a[aria-current="page"]::after { transform: scaleX(1); }
 .reveal-stagger > * { transition-delay: calc(var(--i, 0) * 100ms); }
 .always-visible { opacity: 1 !important; transform: none !important; }
 
+@media (max-width: 860px) {
+  /* Sur mobile, le contenu doit apparaître immédiatement, fidèle à ce qu'on voit
+     sur desktop après le défilement — pas d'attente d'un scroll/IntersectionObserver
+     dont le déclenchement dépend de la vitesse de défilement tactile réelle (imprévisible,
+     contrairement à un scroll programmatique de test). Ça élimine aussi un effet de bord :
+     tant que .reveal n'est pas encore .in-view, le transform: translateY() décale
+     visuellement le contenu sous la zone visible calculée par le layout, et un parent avec
+     overflow:hidden (ex. .bento) peut alors le rogner pendant la transition. */
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
 /* ---------- Hero (full-bleed, image stays crisp; scrim only behind text) ---------- */
 .hero-full {
-  position: relative; height: min(92vh, 900px); min-height: 560px;
+  /* min-height (pas height) : si le texte a besoin de plus de place que 92vh/dvh sur un
+     écran étroit et court (texte allemand qui retombe sur plus de lignes), la section
+     grandit au lieu de rogner le contenu via overflow:hidden. */
+  position: relative; min-height: min(92vh, 900px);
   display: flex; align-items: flex-end; overflow: hidden;
 }
 @supports (height: 92dvh) {
   /* dvh suit la barre d'adresse mobile (Safari/Chrome) qui se rétracte au scroll ;
      92vh se base sur la hauteur MAXIMALE (barre rétractée) et peut donc pousser le
      bas du hero (bouton, note tarifaire) hors de l'écran visible au premier chargement. */
-  .hero-full { height: min(92dvh, 900px); }
+  .hero-full { min-height: min(92dvh, 900px); }
 }
 .hero-full img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
@@ -373,40 +386,40 @@ section.block.alt { background: var(--bone-2); }
 
 .menu-note { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--ink-faint); font-size: 0.84rem; }
 
-/* ---------- Menu : Bestellen (Vor Ort / Uber Eats) ---------- */
+/* ---------- Menu : Bestellen (quantité par plat / Uber Eats) ---------- */
 .order-menu { grid-column: 1 / -1; margin-top: 12px; }
-.order-toggle {
-  border: 1px solid var(--line-strong); background: transparent; border-radius: 999px;
-  padding: 7px 16px; font-family: 'Manrope', sans-serif; font-size: 0.8rem; font-weight: 600;
-  color: var(--ink-dim); cursor: pointer; transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
-  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; touch-action: manipulation;
-}
-.order-toggle::after { content: "▾"; font-size: 0.7rem; transition: transform 0.25s var(--ease); }
-.order-toggle[aria-expanded="true"]::after { transform: rotate(180deg); }
-.order-toggle:hover, .order-toggle[aria-expanded="true"] { border-color: var(--matcha-deep); color: var(--ink); }
-.order-options { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-.order-options[hidden] { display: none; }
-.order-option {
-  border: 1px solid var(--line); background: var(--bone-2); border-radius: 999px;
-  padding: 7px 14px; font-family: 'Manrope', sans-serif; font-size: 0.78rem; font-weight: 600;
-  color: var(--ink); text-decoration: none; cursor: pointer; display: inline-flex; align-items: center;
-  min-height: 44px; touch-action: manipulation;
-  transition: background 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
-}
-.order-option:hover { background: var(--matcha-pale); border-color: var(--matcha-deep); color: var(--matcha-deep); }
-
-@media (max-width: 560px) {
-  /* Boutons pleine largeur et empilés : plus faciles à viser du pouce qu'une
-     rangée de petites pastilles serrées les unes contre les autres. */
-  .order-options { flex-direction: column; }
-  .order-option { justify-content: center; width: 100%; padding: 11px 14px; font-size: 0.85rem; }
-  .order-toggle { width: 100%; justify-content: center; }
-}
 /* Confirmation légère "✓ Hinzugefügt" affichée brièvement au niveau du plat lui-même
    après un ajout au panier (la confirmation de commande complète, elle, apparaît dans
    le panier au moment de valider — voir plus bas). */
 .order-added { margin: 8px 0 0; font-size: 0.8rem; color: var(--matcha-deep); font-weight: 600; display: none; line-height: 1.5; }
 .order-added.show { display: block; }
+
+/* ---------- Sélecteur de quantité par plat (toujours visible) ---------- */
+.dish-order-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.dish-qty {
+  display: flex; align-items: center; gap: 2px; border: 1px solid var(--line-strong);
+  border-radius: 999px; padding: 4px; flex-shrink: 0;
+}
+.dish-qty-btn {
+  width: 40px; height: 40px; border-radius: 50%; border: none; background: var(--bone-2);
+  color: var(--ink); font-size: 1.15rem; font-weight: 700; cursor: pointer; touch-action: manipulation;
+  display: flex; align-items: center; justify-content: center; line-height: 1;
+  transition: background 0.2s var(--ease);
+}
+.dish-qty-btn:hover { background: var(--matcha-pale); }
+.dish-qty-btn:active { transform: scale(0.95); }
+.dish-qty-value {
+  min-width: 28px; text-align: center; font-variant-numeric: tabular-nums;
+  font-weight: 700; font-size: 1.05rem; font-family: 'Cormorant', serif; font-style: italic;
+}
+.dish-delivery-link {
+  font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 600;
+  color: var(--ink-dim); text-decoration: none; white-space: nowrap;
+  padding: 8px 4px; min-height: 44px; display: inline-flex; align-items: center;
+  transition: color 0.2s var(--ease);
+}
+.dish-delivery-link:hover { color: var(--matcha-deep); }
+.dish-delivery-link::after { content: "→"; margin-left: 4px; }
 
 /* ---------- Badge panier / commande persistant ---------- */
 .order-badge {
@@ -522,7 +535,10 @@ section.block.alt { background: var(--bone-2); }
   opacity: 0; max-height: 0; overflow: hidden;
   transition: opacity 0.5s var(--ease), max-height 0.6s var(--ease), margin-top 0.5s var(--ease), padding-top 0.5s var(--ease), border-top-width 0.5s var(--ease);
 }
-.review-prompt.show { opacity: 1; max-height: 320px; margin-top: 16px; padding-top: 16px; border-top-width: 1px; border-top-style: dashed; border-top-color: var(--line); }
+/* 320px suffisait pour le chemin "content" (juste un lien), mais coupait le bouton
+   "Absenden" sur le chemin "avis mitigé/négatif" (ajoute un textarea) — vérifié en
+   pratique : ce contenu peut atteindre ~330px. Marge large pour ne plus jamais couper. */
+.review-prompt.show { opacity: 1; max-height: 600px; margin-top: 16px; padding-top: 16px; border-top-width: 1px; border-top-style: dashed; border-top-color: var(--line); }
 .review-question { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.05rem; color: var(--ink); margin: 0 0 12px; }
 .review-emojis { display: flex; gap: 10px; }
 .review-emoji {

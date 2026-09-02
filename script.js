@@ -29,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       btn.classList.add('selected');
       btn.setAttribute('aria-pressed', 'true');
+
+      // Normal et Groß sont deux lignes de panier distinctes (prix différents) :
+      // le chiffre affiché doit refléter la quantité de la taille NOUVELLEMENT choisie.
+      const orderMenu = group.closest('.menu-row')?.querySelector('.order-menu');
+      if (orderMenu && typeof syncDishQty === 'function') syncDishQty(orderMenu);
     });
   });
 
@@ -68,22 +73,33 @@ document.addEventListener('DOMContentLoaded', () => {
     return { label, preis };
   }
 
-  function warenkorbHinzufuegen(name, size, preis) {
+  // Le chiffre affiché sur le sélecteur de quantité EST la source de vérité : cette
+  // fonction fixe la quantité absolue pour un plat+taille donné (pas un simple +1).
+  function warenkorbSetMenge(name, size, preis, menge) {
     const items = ladeWarenkorb();
-    const bestehende = items.find((i) => i.name === name && i.size === size);
-    if (bestehende) {
-      bestehende.menge += 1;
+    const index = items.findIndex((i) => i.name === name && i.size === size);
+    if (menge <= 0) {
+      if (index !== -1) items.splice(index, 1);
+    } else if (index !== -1) {
+      items[index].menge = menge;
+      items[index].preis = preis;
     } else {
-      items.push({ name, size, preis, menge: 1 });
+      items.push({ name, size, preis, menge });
     }
     speichereWarenkorb(items);
     aktualisiereBestellBadge();
 
-    // Un nouvel ajout démarre un nouveau panier : si une confirmation de commande
+    // Une nouvelle quantité change le panier : si une confirmation de commande
     // précédente était affichée, on repasse à la vue normale du panier.
     const confirmEl = document.getElementById('cart-confirm');
     if (confirmEl) confirmEl.setAttribute('hidden', '');
     renderCartPanel();
+    syncAlleDishQty();
+  }
+
+  function warenkorbMengeFuer(name, size) {
+    const item = ladeWarenkorb().find((i) => i.name === name && i.size === size);
+    return item ? item.menge : 0;
   }
 
   function warenkorbAendereMenge(index, delta) {
@@ -94,6 +110,43 @@ document.addEventListener('DOMContentLoaded', () => {
     speichereWarenkorb(items);
     aktualisiereBestellBadge();
     renderCartPanel();
+    syncAlleDishQty();
+  }
+
+  /* Lit le nom/taille/prix "actuels" d'un plat (taille sélectionnée pour les Donburi,
+     prix fixe sinon) — utilisé à la fois par le sélecteur de quantité et par la
+     synchronisation d'affichage quand on change de taille. */
+  function infosPlat(orderMenu) {
+    const row = orderMenu.closest('.menu-row');
+    const name = orderMenu.getAttribute('data-dish-name') || '';
+    let size = null;
+    let preis = 0;
+    const sizeSelect = row.querySelector('.size-select');
+    if (sizeSelect) {
+      const selected = sizeSelect.querySelector('.size-btn.selected') || sizeSelect.querySelector('.size-btn');
+      const parsed = parsePreisText(selected.textContent);
+      size = parsed.label;
+      preis = parsed.preis;
+    } else {
+      const priceEl = row.querySelector('.price');
+      if (priceEl) preis = parsePreisText(priceEl.textContent).preis;
+    }
+    return { name, size, preis };
+  }
+
+  /* Met à jour le chiffre affiché sur le plat pour refléter la quantité déjà dans le
+     panier (taille actuellement sélectionnée) — appelé au chargement, après tout
+     changement de panier, et quand on change de taille (Normal/Groß ont des lignes
+     de panier distinctes, donc des quantités distinctes). */
+  function syncDishQty(orderMenu) {
+    const valueEl = orderMenu.querySelector('.dish-qty-value');
+    if (!valueEl) return;
+    const { name, size } = infosPlat(orderMenu);
+    valueEl.textContent = String(warenkorbMengeFuer(name, size));
+  }
+
+  function syncAlleDishQty() {
+    document.querySelectorAll('.order-menu').forEach(syncDishQty);
   }
 
   function warenkorbGesamt(items) {
@@ -122,8 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return nummer;
   }
 
-  /* Zeigt das feste Badge unten rechts : Warenkorb-Anzahl solange nicht bestellt wurde,
-     sonst die Nummer der zuletzt bestätigten Bestellung. */
+  /* Zeigt das feste Badge unten rechts. Tant qu'aucune commande n'est validée, on
+     n'affiche RIEN qui ressemble à un numéro — juste l'icône panier + le nombre
+     d'articles (une simple quantité, pas un identifiant de commande). Le numéro de
+     commande n'apparaît que dans l'état "Ihre Bestellung", après la validation. */
   function aktualisiereBestellBadge() {
     const badge = document.getElementById('order-badge');
     const countEl = document.getElementById('order-badge-count');
@@ -135,8 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const anzahl = items.reduce((n, i) => n + i.menge, 0);
 
     if (anzahl > 0) {
-      labelEl.textContent = 'Warenkorb';
-      nummerEl.textContent = formatPreis(warenkorbGesamt(items));
+      labelEl.textContent = 'Warenkorb ansehen';
+      nummerEl.textContent = '';
       countEl.textContent = String(anzahl);
       countEl.removeAttribute('hidden');
       badge.removeAttribute('hidden');
@@ -245,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .join(', ');
 
     speichereWarenkorb([]);
+    syncAlleDishQty();
 
     const confirmEl = document.getElementById('cart-confirm');
     const itemsEl = document.getElementById('cart-items');
@@ -279,6 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   aktualisiereBestellBadge();
+  syncAlleDishQty();
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
@@ -288,53 +345,27 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('click', (event) => {
-    const toggle = event.target.closest('.order-toggle');
-    if (toggle) {
-      const menu = toggle.closest('.order-menu');
-      const options = menu.querySelector('.order-options');
-      const isOpen = !options.hasAttribute('hidden');
-      document.querySelectorAll('.order-options').forEach((el) => el.setAttribute('hidden', ''));
-      document.querySelectorAll('.order-toggle').forEach((el) => el.setAttribute('aria-expanded', 'false'));
-      if (!isOpen) {
-        options.removeAttribute('hidden');
-        toggle.setAttribute('aria-expanded', 'true');
-      }
-      return;
-    }
+    const dishQtyBtn = event.target.closest('.dish-qty-btn');
+    if (dishQtyBtn) {
+      const orderMenu = dishQtyBtn.closest('.order-menu');
+      const { name, size, preis } = infosPlat(orderMenu);
+      const aktuelleMenge = warenkorbMengeFuer(name, size);
+      const delta = dishQtyBtn.getAttribute('data-qty-action') === 'inc' ? 1 : -1;
+      const neueMenge = Math.max(0, aktuelleMenge + delta);
 
-    const addToCart = event.target.closest('.order-option[data-mode="cart"]');
-    if (addToCart) {
-      const menu = addToCart.closest('.order-menu');
-      const row = menu.closest('.menu-row');
-      const name = menu.getAttribute('data-dish-name') || '';
+      warenkorbSetMenge(name, size, preis, neueMenge);
 
-      let size = null;
-      let preis = 0;
-      const sizeSelect = row.querySelector('.size-select');
-      if (sizeSelect) {
-        const selected = sizeSelect.querySelector('.size-btn.selected') || sizeSelect.querySelector('.size-btn');
-        const parsed = parsePreisText(selected.textContent);
-        size = parsed.label;
-        preis = parsed.preis;
-      } else {
-        const priceEl = row.querySelector('.price');
-        if (priceEl) preis = parsePreisText(priceEl.textContent).preis;
-      }
-
-      warenkorbHinzufuegen(name, size, preis);
-
-      const addedEl = menu.querySelector('.order-added');
+      const addedEl = orderMenu.querySelector('.order-added');
       if (addedEl) {
-        addedEl.textContent = '✓ Zum Warenkorb hinzugefügt';
-        addedEl.classList.add('show');
-        window.clearTimeout(addedEl._timeout);
-        addedEl._timeout = window.setTimeout(() => addedEl.classList.remove('show'), 2200);
+        if (delta > 0) {
+          addedEl.textContent = '✓ Zum Warenkorb hinzugefügt';
+          addedEl.classList.add('show');
+          window.clearTimeout(addedEl._timeout);
+          addedEl._timeout = window.setTimeout(() => addedEl.classList.remove('show'), 2200);
+        } else {
+          addedEl.classList.remove('show');
+        }
       }
-
-      const options = menu.querySelector('.order-options');
-      const toggleBtn = menu.querySelector('.order-toggle');
-      options.setAttribute('hidden', '');
-      toggleBtn.setAttribute('aria-expanded', 'false');
       return;
     }
 
