@@ -39,6 +39,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const LETZTE_BESTELLUNG_KEY = 'raum_letzte_bestellung';
   const VERLAUF_KEY = 'raum_bestell_verlauf';
 
+  /* ---------- Notification email côté vendeur (EmailJS) ----------
+     Remplacez ces 3 valeurs par celles de votre compte EmailJS (gratuit) :
+     https://www.emailjs.com/ → Email Services (Service ID), Email Templates
+     (Template ID), Account → General (Public Key). Tant que PUBLIC_KEY vaut
+     'YOUR_PUBLIC_KEY', aucun email n'est envoyé — le site fonctionne
+     normalement, silencieusement, sans cette fonctionnalité. */
+  const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
+  function sendeBestellBenachrichtigung(nummer, items) {
+    if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') return; // pas encore configuré
+    if (typeof emailjs === 'undefined') return; // SDK pas chargé (ex. hors ligne)
+
+    const itemsText = items
+      .map((i) => i.menge + '× ' + i.name + (i.size ? ' (' + i.size + ')' : ''))
+      .join('\n');
+    const gesamt = formatPreis(warenkorbGesamt(items));
+
+    try {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        order_number: nummer,
+        items_list: itemsText,
+        total: gesamt,
+        timestamp: new Date().toLocaleString('de-DE'),
+      });
+    } catch (e) {
+      // Une notification ratée ne doit jamais gêner le client : la commande
+      // reste valide de son côté, on log juste l'échec pour le débogage.
+      console.warn('Notification de commande non envoyée :', e);
+    }
+  }
+
   function ladeWarenkorb() {
     try {
       return JSON.parse(sessionStorage.getItem(WARENKORB_KEY) || '[]');
@@ -298,6 +332,8 @@ document.addEventListener('DOMContentLoaded', () => {
           '</li>'
       )
       .join('');
+
+    sendeBestellBenachrichtigung(nummer, items);
 
     speichereWarenkorb([]);
     resetAlleDishQty();

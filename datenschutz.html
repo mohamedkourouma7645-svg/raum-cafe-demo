@@ -7,7 +7,7 @@
 <meta name="description" content="Datenschutz-Hinweis zu dieser Konzept-Demo-Website von RAUM.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=202609032120">
+<link rel="stylesheet" href="style.css?v=202609032130">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
@@ -83,9 +83,16 @@
         </p>
         <p>
           Die Bestellnummer und eine eventuelle Rückmeldung zum Bestellerlebnis (Menü-Seite)
-          werden ausschließlich im <em>Session Storage</em> Ihres Browsers gespeichert — sie
-          verlassen niemals Ihr Gerät und werden automatisch gelöscht, sobald Sie den Tab
-          schließen.
+          werden im <em>Session Storage</em> Ihres Browsers gespeichert und automatisch
+          gelöscht, sobald Sie den Tab schließen.
+        </p>
+        <p>
+          Bei Abschluss einer Bestellung wird die Bestellnummer sowie die Liste der
+          bestellten Gerichte (Name, Größe, Menge, Gesamtpreis) über den Drittanbieter
+          <a class="link-accent" href="https://www.emailjs.com/legal/privacy-policy/" target="_blank" rel="noopener">EmailJS</a>
+          per E-Mail an den Betreiber dieser Demo übermittelt, damit die Bestellung
+          angezeigt werden kann. Es werden dabei keine persönlichen Kundendaten (Name,
+          Adresse, Kontaktdaten) übertragen — nur die Bestelldetails selbst.
         </p>
       </div>
     </div>
@@ -125,7 +132,8 @@
   </div>
 </footer>
 
-<script src="script.js?v=202609032120"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="script.js?v=202609032130"></script>
 <script type="module" src="components/index.js"></script>
 </body>
 </html>
