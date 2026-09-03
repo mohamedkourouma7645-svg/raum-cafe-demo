@@ -398,11 +398,6 @@ section.block.alt { background: var(--bone-2); }
 
 /* ---------- Sélecteur de quantité par plat (toujours visible) ---------- */
 .dish-order-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.dish-order-label {
-  font-family: 'Manrope', sans-serif; font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 1px; text-transform: uppercase; color: var(--matcha-deep);
-}
-.dish-delivery-link { margin-left: auto; }
 .dish-qty {
   display: flex; align-items: center; gap: 2px; border: 1px solid var(--line-strong);
   border-radius: 999px; padding: 4px; flex-shrink: 0;
@@ -416,14 +411,28 @@ section.block.alt { background: var(--bone-2); }
 .dish-qty-btn:hover { background: var(--matcha-pale); }
 .dish-qty-btn:active { transform: scale(0.95); }
 .dish-qty-value {
-  min-width: 28px; text-align: center; font-variant-numeric: tabular-nums;
+  width: 40px; min-width: 28px; text-align: center; font-variant-numeric: tabular-nums;
   font-weight: 700; font-size: 1.05rem; font-family: 'Cormorant', serif; font-style: italic;
+  color: var(--ink); background: transparent; border: none; padding: 0;
+  -moz-appearance: textfield; appearance: textfield;
 }
+.dish-qty-value::-webkit-outer-spin-button,
+.dish-qty-value::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.dish-qty-value:focus-visible { outline: 2px solid var(--matcha-deep); outline-offset: 2px; border-radius: 4px; }
+.dish-add-btn {
+  font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 700;
+  color: var(--bone); background: var(--ink); border: none; border-radius: var(--radius);
+  text-decoration: none; white-space: nowrap; cursor: pointer; touch-action: manipulation;
+  padding: 8px 18px; min-height: 44px; display: inline-flex; align-items: center;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.dish-add-btn:hover { background: var(--matcha-deep); }
+.dish-add-btn:active { transform: scale(0.97); }
 .dish-delivery-link {
   font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 600;
   color: var(--ink-dim); text-decoration: none; white-space: nowrap;
   padding: 8px 4px; min-height: 44px; display: inline-flex; align-items: center;
-  transition: color 0.2s var(--ease);
+  margin-left: auto; transition: color 0.2s var(--ease);
 }
 .dish-delivery-link:hover { color: var(--matcha-deep); }
 .dish-delivery-link::after { content: "→"; margin-left: 4px; }

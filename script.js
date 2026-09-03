@@ -30,10 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.classList.add('selected');
       btn.setAttribute('aria-pressed', 'true');
 
-      // Normal et Groß sont deux lignes de panier distinctes (prix différents) :
-      // le chiffre affiché doit refléter la quantité de la taille NOUVELLEMENT choisie.
-      const orderMenu = group.closest('.menu-row')?.querySelector('.order-menu');
-      if (orderMenu && typeof syncDishQty === 'function') syncDishQty(orderMenu);
     });
   });
 
@@ -73,35 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return { label, preis };
   }
 
-  // Le chiffre affiché sur le sélecteur de quantité EST la source de vérité : cette
-  // fonction fixe la quantité absolue pour un plat+taille donné (pas un simple +1).
-  function warenkorbSetMenge(name, size, preis, menge) {
-    const items = ladeWarenkorb();
-    const index = items.findIndex((i) => i.name === name && i.size === size);
-    if (menge <= 0) {
-      if (index !== -1) items.splice(index, 1);
-    } else if (index !== -1) {
-      items[index].menge = menge;
-      items[index].preis = preis;
-    } else {
-      items.push({ name, size, preis, menge });
-    }
-    speichereWarenkorb(items);
-    aktualisiereBestellBadge();
-
-    // Une nouvelle quantité change le panier : si une confirmation de commande
-    // précédente était affichée, on repasse à la vue normale du panier.
-    const confirmEl = document.getElementById('cart-confirm');
-    if (confirmEl) confirmEl.setAttribute('hidden', '');
-    renderCartPanel();
-    syncAlleDishQty();
-  }
-
-  function warenkorbMengeFuer(name, size) {
-    const item = ladeWarenkorb().find((i) => i.name === name && i.size === size);
-    return item ? item.menge : 0;
-  }
-
   function warenkorbAendereMenge(index, delta) {
     const items = ladeWarenkorb();
     if (!items[index]) return;
@@ -110,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     speichereWarenkorb(items);
     aktualisiereBestellBadge();
     renderCartPanel();
-    syncAlleDishQty();
   }
 
   /* Lit le nom/taille/prix "actuels" d'un plat (taille sélectionnée pour les Donburi,
@@ -134,19 +100,48 @@ document.addEventListener('DOMContentLoaded', () => {
     return { name, size, preis };
   }
 
-  /* Met à jour le chiffre affiché sur le plat pour refléter la quantité déjà dans le
-     panier (taille actuellement sélectionnée) — appelé au chargement, après tout
-     changement de panier, et quand on change de taille (Normal/Groß ont des lignes
-     de panier distinctes, donc des quantités distinctes). */
-  function syncDishQty(orderMenu) {
-    const valueEl = orderMenu.querySelector('.dish-qty-value');
-    if (!valueEl) return;
-    const { name, size } = infosPlat(orderMenu);
-    valueEl.textContent = String(warenkorbMengeFuer(name, size));
+  /* Ajoute au panier le plat, à la quantité actuellement choisie dans son sélecteur
+     +/- (min. 1 — le sélecteur n'affiche jamais 0, il indique "combien j'ajoute
+     maintenant", pas "combien j'ai déjà dans le panier"). Remet le sélecteur à 1
+     ensuite, prêt pour un prochain ajout. */
+  function dishAddToCart(orderMenu) {
+    const { name, size, preis } = infosPlat(orderMenu);
+    const input = orderMenu.querySelector('.dish-qty-value');
+    if (!input) return;
+    const min = parseInt(input.min, 10) || 1;
+    let menge = parseInt(input.value, 10);
+    if (isNaN(menge) || menge < min) menge = min;
+
+    const items = ladeWarenkorb();
+    const index = items.findIndex((i) => i.name === name && i.size === size);
+    if (index !== -1) {
+      items[index].menge += menge;
+      items[index].preis = preis;
+    } else {
+      items.push({ name, size, preis, menge });
+    }
+    speichereWarenkorb(items);
+    aktualisiereBestellBadge();
+
+    const confirmEl = document.getElementById('cart-confirm');
+    if (confirmEl) confirmEl.setAttribute('hidden', '');
+    renderCartPanel();
+
+    input.value = String(min);
+
+    const addedEl = orderMenu.querySelector('.order-added');
+    if (addedEl) {
+      addedEl.textContent = menge > 1 ? '✓ ' + menge + '× zum Warenkorb hinzugefügt' : '✓ Zum Warenkorb hinzugefügt';
+      addedEl.classList.add('show');
+      window.clearTimeout(addedEl._timeout);
+      addedEl._timeout = window.setTimeout(() => addedEl.classList.remove('show'), 2200);
+    }
   }
 
-  function syncAlleDishQty() {
-    document.querySelectorAll('.order-menu').forEach(syncDishQty);
+  function resetAlleDishQty() {
+    document.querySelectorAll('.dish-qty-value').forEach((input) => {
+      input.value = input.min || '1';
+    });
   }
 
   function warenkorbGesamt(items) {
@@ -306,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .join('');
 
     speichereWarenkorb([]);
-    syncAlleDishQty();
+    resetAlleDishQty();
 
     const confirmEl = document.getElementById('cart-confirm');
     const itemsEl = document.getElementById('cart-items');
@@ -342,7 +337,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   aktualisiereBestellBadge();
-  syncAlleDishQty();
+
+  // Couvre aussi la saisie directe au clavier dans le champ (pas seulement +/-) :
+  // toujours un entier valide, jamais en dessous du minimum.
+  document.addEventListener('change', (event) => {
+    const input = event.target.closest('.dish-qty-value');
+    if (!input) return;
+    const min = parseInt(input.min, 10) || 1;
+    let val = parseInt(input.value, 10);
+    if (isNaN(val) || val < min) val = min;
+    input.value = String(val);
+  });
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
@@ -355,24 +360,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const dishQtyBtn = event.target.closest('.dish-qty-btn');
     if (dishQtyBtn) {
       const orderMenu = dishQtyBtn.closest('.order-menu');
-      const { name, size, preis } = infosPlat(orderMenu);
-      const aktuelleMenge = warenkorbMengeFuer(name, size);
+      const input = orderMenu.querySelector('.dish-qty-value');
+      if (!input) return;
+      const min = parseInt(input.min, 10) || 1;
+      const aktuelleMenge = parseInt(input.value, 10);
+      const basis = isNaN(aktuelleMenge) ? min : aktuelleMenge;
       const delta = dishQtyBtn.getAttribute('data-qty-action') === 'inc' ? 1 : -1;
-      const neueMenge = Math.max(0, aktuelleMenge + delta);
+      input.value = String(Math.max(min, basis + delta));
+      return;
+    }
 
-      warenkorbSetMenge(name, size, preis, neueMenge);
-
-      const addedEl = orderMenu.querySelector('.order-added');
-      if (addedEl) {
-        if (delta > 0) {
-          addedEl.textContent = '✓ Zum Warenkorb hinzugefügt';
-          addedEl.classList.add('show');
-          window.clearTimeout(addedEl._timeout);
-          addedEl._timeout = window.setTimeout(() => addedEl.classList.remove('show'), 2200);
-        } else {
-          addedEl.classList.remove('show');
-        }
-      }
+    const addBtn = event.target.closest('.dish-add-btn');
+    if (addBtn) {
+      const orderMenu = addBtn.closest('.order-menu');
+      if (orderMenu) dishAddToCart(orderMenu);
       return;
     }
 
