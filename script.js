@@ -100,17 +100,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return { name, size, preis };
   }
 
-  /* Ajoute au panier le plat, à la quantité actuellement choisie dans son sélecteur
-     +/- (min. 1 — le sélecteur n'affiche jamais 0, il indique "combien j'ajoute
-     maintenant", pas "combien j'ai déjà dans le panier"). Remet le sélecteur à 1
-     ensuite, prêt pour un prochain ajout. */
+  /* Ajoute au panier le plat, à la quantité actuellement choisie dans son menu
+     déroulant (1 à 10 — indique "combien j'ajoute maintenant", pas "combien j'ai
+     déjà dans le panier"). Remet le sélecteur à 1 ensuite, prêt pour un prochain
+     ajout. */
   function dishAddToCart(orderMenu) {
     const { name, size, preis } = infosPlat(orderMenu);
-    const input = orderMenu.closest('.menu-row')?.querySelector('.dish-qty-value');
-    if (!input) return;
-    const min = parseInt(input.min, 10) || 1;
-    let menge = parseInt(input.value, 10);
-    if (isNaN(menge) || menge < min) menge = min;
+    const select = orderMenu.closest('.menu-row')?.querySelector('.dish-qty-select');
+    if (!select) return;
+    let menge = parseInt(select.value, 10);
+    if (isNaN(menge) || menge < 1) menge = 1;
 
     const items = ladeWarenkorb();
     const index = items.findIndex((i) => i.name === name && i.size === size);
@@ -127,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (confirmEl) confirmEl.setAttribute('hidden', '');
     renderCartPanel();
 
-    input.value = String(min);
+    select.value = '1';
 
     const addedEl = orderMenu.querySelector('.order-added');
     if (addedEl) {
@@ -139,8 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function resetAlleDishQty() {
-    document.querySelectorAll('.dish-qty-value').forEach((input) => {
-      input.value = input.min || '1';
+    document.querySelectorAll('.dish-qty-select').forEach((select) => {
+      select.value = '1';
     });
   }
 
@@ -338,17 +337,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   aktualisiereBestellBadge();
 
-  // Couvre aussi la saisie directe au clavier dans le champ (pas seulement +/-) :
-  // toujours un entier valide, jamais en dessous du minimum.
-  document.addEventListener('change', (event) => {
-    const input = event.target.closest('.dish-qty-value');
-    if (!input) return;
-    const min = parseInt(input.min, 10) || 1;
-    let val = parseInt(input.value, 10);
-    if (isNaN(val) || val < min) val = min;
-    input.value = String(val);
-  });
-
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       const panel = document.getElementById('cart-panel');
@@ -357,18 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('click', (event) => {
-    const dishQtyBtn = event.target.closest('.dish-qty-btn');
-    if (dishQtyBtn) {
-      const input = dishQtyBtn.closest('.dish-qty')?.querySelector('.dish-qty-value');
-      if (!input) return;
-      const min = parseInt(input.min, 10) || 1;
-      const aktuelleMenge = parseInt(input.value, 10);
-      const basis = isNaN(aktuelleMenge) ? min : aktuelleMenge;
-      const delta = dishQtyBtn.getAttribute('data-qty-action') === 'inc' ? 1 : -1;
-      input.value = String(Math.max(min, basis + delta));
-      return;
-    }
-
     const addBtn = event.target.closest('.dish-add-btn');
     if (addBtn) {
       const orderMenu = addBtn.closest('.order-menu');

@@ -348,7 +348,7 @@ section.block.alt { background: var(--bone-2); }
 .menu-row.has-photo .size-select { grid-column: 4; }
 .menu-row.has-photo .price-qty-row { grid-column: 4; }
 .price-qty-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
-.size-select .dish-qty { margin-left: 2px; }
+.size-select .dish-qty-select { margin-left: 2px; }
 
 .menu-thumb {
   width: 84px; height: 84px; border-radius: var(--radius); overflow: hidden; position: relative;
@@ -400,29 +400,19 @@ section.block.alt { background: var(--bone-2); }
 .order-added { margin: 8px 0 0; font-size: 0.8rem; color: var(--matcha-deep); font-weight: 600; display: none; line-height: 1.5; }
 .order-added.show { display: block; }
 
-/* ---------- Sélecteur de quantité par plat : compact, à côté du prix (toujours visible) ---------- */
+/* ---------- Sélecteur de quantité par plat : menu déroulant natif, à côté du prix ----------
+   Volontairement un <select> natif plutôt qu'un contrôle personnalisé : rendu 100% géré par
+   le navigateur (pas de flex/appearance custom qui pourrait échouer silencieusement sur une
+   configuration particulière), donc le plus fiable possible tout en restant fonctionnel. */
 .dish-order-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.dish-qty {
-  display: flex; align-items: center; border: 1.5px solid var(--ink);
-  border-radius: 999px; flex-shrink: 0; padding: 2px; background: var(--surface);
+.dish-qty-select {
+  min-width: 56px; min-height: 36px; padding: 6px 10px; border-radius: var(--radius);
+  border: 1.5px solid var(--ink); background: var(--surface); color: var(--ink);
+  font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.9rem;
+  font-variant-numeric: tabular-nums; cursor: pointer; flex-shrink: 0;
 }
-.dish-qty-btn {
-  width: 28px; height: 28px; min-width: 28px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--bone-2);
-  color: var(--ink); font-size: 1rem; font-weight: 700; cursor: pointer; touch-action: manipulation;
-  display: flex; align-items: center; justify-content: center; line-height: 1;
-  transition: background 0.2s var(--ease), color 0.2s var(--ease);
-}
-.dish-qty-btn:hover { background: var(--matcha-deep); color: var(--bone); }
-.dish-qty-btn:active { transform: scale(0.93); }
-.dish-qty-value {
-  width: 30px; min-width: 30px; text-align: center; font-variant-numeric: tabular-nums;
-  font-weight: 700; font-size: 0.88rem; font-family: 'Manrope', sans-serif;
-  color: var(--ink); background: transparent; border: none; padding: 0; margin: 0;
-  -webkit-appearance: none; -moz-appearance: textfield; appearance: textfield;
-}
-.dish-qty-value::-webkit-outer-spin-button,
-.dish-qty-value::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.dish-qty-value:focus-visible { outline: 2px solid var(--matcha-deep); outline-offset: 2px; border-radius: 4px; }
+.dish-qty-select:hover { border-color: var(--matcha-deep); }
+.dish-qty-select:focus-visible { outline: 2px solid var(--matcha-deep); outline-offset: 2px; }
 .dish-add-btn {
   font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 700;
   color: var(--bone); background: var(--ink); border: none; border-radius: var(--radius);
