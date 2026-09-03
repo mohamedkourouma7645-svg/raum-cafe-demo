@@ -404,10 +404,10 @@ section.block.alt { background: var(--bone-2); }
 .dish-order-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .dish-qty {
   display: flex; align-items: center; border: 1px solid var(--line-strong);
-  border-radius: 999px; flex-shrink: 0; overflow: hidden;
+  border-radius: 999px; flex-shrink: 0; padding: 1px;
 }
 .dish-qty-btn {
-  width: 26px; height: 26px; border-radius: 50%; border: none; background: transparent;
+  width: 26px; height: 26px; min-width: 26px; flex-shrink: 0; border-radius: 50%; border: none; background: transparent;
   color: var(--ink-dim); font-size: 0.9rem; font-weight: 600; cursor: pointer; touch-action: manipulation;
   display: flex; align-items: center; justify-content: center; line-height: 1;
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
@@ -415,10 +415,10 @@ section.block.alt { background: var(--bone-2); }
 .dish-qty-btn:hover { background: var(--matcha-pale); color: var(--matcha-deep); }
 .dish-qty-btn:active { transform: scale(0.93); }
 .dish-qty-value {
-  width: 22px; min-width: 18px; text-align: center; font-variant-numeric: tabular-nums;
+  width: 30px; min-width: 30px; text-align: center; font-variant-numeric: tabular-nums;
   font-weight: 600; font-size: 0.8rem; font-family: 'Manrope', sans-serif;
-  color: var(--ink); background: transparent; border: none; padding: 0;
-  -moz-appearance: textfield; appearance: textfield;
+  color: var(--ink); background: transparent; border: none; padding: 0; margin: 0;
+  -webkit-appearance: none; -moz-appearance: textfield; appearance: textfield;
 }
 .dish-qty-value::-webkit-outer-spin-button,
 .dish-qty-value::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
