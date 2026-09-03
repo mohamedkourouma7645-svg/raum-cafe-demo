@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test — Composants UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body style="padding: 60px; display: flex; flex-direction: column; gap: 20px; align-items: flex-start;">
+  <h1>Test des composants UI</h1>
+  <p>Cette page vérifie que les Web Components s'enregistrent et rendent correctement avec le design du site, sans toucher à aucune page de production.</p>
+
+  <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+    <ui-button id="test-solid">Bouton plein</ui-button>
+    <ui-button variant="line" id="test-line">Bouton contour</ui-button>
+    <ui-button href="https://www.ubereats.com/de" target="_blank" rel="noopener" id="test-link">Bouton lien</ui-button>
+  </div>
+
+  <p id="test-result" style="font-weight: 700;"></p>
+
+  <script type="module" src="index.js"></script>
+  <script type="module">
+    customElements.whenDefined('ui-button').then(() => {
+      const results = [];
+      const solid = document.querySelector('#test-solid button');
+      const line = document.querySelector('#test-line button');
+      const link = document.querySelector('#test-link a');
+
+      results.push(['ui-button défini', customElements.get('ui-button') !== undefined]);
+      results.push(['variant solid -> <button class="btn btn-solid">', !!solid && solid.classList.contains('btn-solid')]);
+      results.push(['variant line -> <button class="btn btn-line">', !!line && line.classList.contains('btn-line')]);
+      results.push(['href -> rend un <a> avec href/target/rel', !!link && link.href.includes('ubereats') && link.target === '_blank' && link.rel === 'noopener']);
+      results.push(['label texte préservé', solid && solid.textContent.trim() === 'Bouton plein']);
+
+      const allPass = results.every(([, ok]) => ok);
+      document.getElementById('test-result').textContent =
+        (allPass ? '✅ TOUS LES TESTS PASSENT' : '❌ ÉCHEC') + ' — ' + results.map(([name, ok]) => `${ok ? '✓' : '✗'} ${name}`).join(' | ');
+      document.getElementById('test-result').style.color = allPass ? 'green' : 'red';
+    });
+  </script>
+</body>
+</html>
