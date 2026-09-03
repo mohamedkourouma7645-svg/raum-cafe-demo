@@ -117,21 +117,11 @@ header.site-header {
   position: sticky; top: 0; z-index: 30;
 }
 :root[data-theme="dark"] header.site-header { background: var(--bone); }
-/* Le flou en arrière-plan (backdrop-filter) coûte cher à recalculer à chaque frame
-   sur un élément "sticky" pendant le défilement — sensible sur mobile (Android
-   milieu de gamme surtout), ça peut suffire à donner une impression de scroll
-   saccadé/"cassé". On le réserve donc aux écrans assez larges pour absorber ce coût. */
-@media (min-width: 861px) {
-  header.site-header {
-    background: rgba(250, 247, 242, 0.86);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-  :root[data-theme="dark"] header.site-header { background: rgba(28, 26, 23, 0.86); }
-}
-@media (min-width: 861px) {
-  :root[data-theme="dark"] header.site-header { background: rgba(28, 26, 23, 0.86); }
-}
+/* Header en fond plein partout (mobile ET desktop) — pas de backdrop-filter.
+   Un blur sur un élément sticky a provoqué un bug de rendu réel-Safari-desktop
+   (élément invisible plus bas dans la page après scroll, jamais reproductible en
+   test automatisé/mobile) : voir le compteur -/0/+ de menu.html. Solution : ne
+   plus créer cette couche de compositing du tout, sur aucune taille d'écran. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) header.site-header { background: rgba(28, 26, 23, 0.86); }
 }
