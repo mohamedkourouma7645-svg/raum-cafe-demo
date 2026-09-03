@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
      ensuite, prêt pour un prochain ajout. */
   function dishAddToCart(orderMenu) {
     const { name, size, preis } = infosPlat(orderMenu);
-    const input = orderMenu.querySelector('.dish-qty-value');
+    const input = orderMenu.closest('.menu-row')?.querySelector('.dish-qty-value');
     if (!input) return;
     const min = parseInt(input.min, 10) || 1;
     let menge = parseInt(input.value, 10);
@@ -359,8 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (event) => {
     const dishQtyBtn = event.target.closest('.dish-qty-btn');
     if (dishQtyBtn) {
-      const orderMenu = dishQtyBtn.closest('.order-menu');
-      const input = orderMenu.querySelector('.dish-qty-value');
+      const input = dishQtyBtn.closest('.dish-qty')?.querySelector('.dish-qty-value');
       if (!input) return;
       const min = parseInt(input.min, 10) || 1;
       const aktuelleMenge = parseInt(input.value, 10);

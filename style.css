@@ -346,6 +346,9 @@ section.block.alt { background: var(--bone-2); }
 .menu-row.has-photo .desc { grid-column: 2 / -1; }
 .menu-row.has-photo .price { grid-column: 4; }
 .menu-row.has-photo .size-select { grid-column: 4; }
+.menu-row.has-photo .price-qty-row { grid-column: 4; }
+.price-qty-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+.size-select .dish-qty { margin-left: 2px; }
 
 .menu-thumb {
   width: 84px; height: 84px; border-radius: var(--radius); overflow: hidden; position: relative;
@@ -363,11 +366,12 @@ section.block.alt { background: var(--bone-2); }
   .menu-row.has-photo { grid-template-columns: 56px 1fr; }
   .menu-thumb { width: 56px; height: 56px; }
   .menu-row.has-photo .price,
-  .menu-row.has-photo .size-select { grid-column: 1 / -1; margin-top: 10px; text-align: left; justify-content: flex-start; }
+  .menu-row.has-photo .size-select,
+  .menu-row.has-photo .price-qty-row { grid-column: 1 / -1; margin-top: 10px; text-align: left; justify-content: flex-start; }
 }
 
 /* ---------- Menu : sélecteur de taille (Normal / Groß) ---------- */
-.size-select { display: flex; gap: 8px; flex-wrap: wrap; }
+.size-select { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .size-btn {
   border: 1px solid var(--line-strong); background: var(--surface); border-radius: 999px;
   padding: 7px 16px; font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 600;
@@ -396,23 +400,23 @@ section.block.alt { background: var(--bone-2); }
 .order-added { margin: 8px 0 0; font-size: 0.8rem; color: var(--matcha-deep); font-weight: 600; display: none; line-height: 1.5; }
 .order-added.show { display: block; }
 
-/* ---------- Sélecteur de quantité par plat (toujours visible) ---------- */
+/* ---------- Sélecteur de quantité par plat : compact, à côté du prix (toujours visible) ---------- */
 .dish-order-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .dish-qty {
-  display: flex; align-items: center; gap: 2px; border: 1px solid var(--line-strong);
-  border-radius: 999px; padding: 4px; flex-shrink: 0;
+  display: flex; align-items: center; border: 1px solid var(--line-strong);
+  border-radius: 999px; flex-shrink: 0; overflow: hidden;
 }
 .dish-qty-btn {
-  width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--bone-2);
-  color: var(--ink); font-size: 1.15rem; font-weight: 700; cursor: pointer; touch-action: manipulation;
+  width: 26px; height: 26px; border-radius: 50%; border: none; background: transparent;
+  color: var(--ink-dim); font-size: 0.9rem; font-weight: 600; cursor: pointer; touch-action: manipulation;
   display: flex; align-items: center; justify-content: center; line-height: 1;
-  transition: background 0.2s var(--ease);
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
 }
-.dish-qty-btn:hover { background: var(--matcha-pale); }
-.dish-qty-btn:active { transform: scale(0.95); }
+.dish-qty-btn:hover { background: var(--matcha-pale); color: var(--matcha-deep); }
+.dish-qty-btn:active { transform: scale(0.93); }
 .dish-qty-value {
-  width: 40px; min-width: 28px; text-align: center; font-variant-numeric: tabular-nums;
-  font-weight: 700; font-size: 1.05rem; font-family: 'Cormorant', serif; font-style: italic;
+  width: 22px; min-width: 18px; text-align: center; font-variant-numeric: tabular-nums;
+  font-weight: 600; font-size: 0.8rem; font-family: 'Manrope', sans-serif;
   color: var(--ink); background: transparent; border: none; padding: 0;
   -moz-appearance: textfield; appearance: textfield;
 }

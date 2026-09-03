@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=202609031614">
+<link rel="stylesheet" href="style.css?v=202609031630">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
@@ -25,7 +25,6 @@
     <span class="order-badge-number" id="order-badge-number"></span>
   </span>
 </button>
-
 <div class="cart-scrim" id="cart-scrim" hidden></div>
 <div class="cart-panel" id="cart-panel" hidden role="dialog" aria-modal="true" aria-labelledby="cart-panel-title">
   <div class="cart-panel-handle"></div>
@@ -43,7 +42,6 @@
     <button type="button" class="btn btn-solid cart-checkout" id="cart-checkout" disabled>Bestellung aufgeben</button>
   </div>
 </div>
-
 <header class="site-header">
   <div class="nav-inner">
     <a class="brand-logo" href="index.html"><img src="assets/logo.png" alt="RAUM"></a>
@@ -61,7 +59,6 @@
     <button class="nav-toggle" aria-expanded="false" aria-label="Menü öffnen">☰</button>
   </div>
 </header>
-
 <main id="main">
   <section class="page-hero">
     <div class="container-narrow" style="text-align:center;">
@@ -73,16 +70,13 @@
       </p>
     </div>
   </section>
-
   <section class="block" style="padding-top:12px;">
     <div class="container">
       <div class="menu-section">
-
         <div class="menu-cat-heading">
           <h2>Reisschalen (Donburi)</h2>
           <p>Herzhaft, wählbar in Normal oder Groß</p>
         </div>
-
         <div class="menu-row has-photo reveal">
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/kaisen_don.webp" type="image/webp"><img src="assets/thumbs/kaisen_don.jpg" alt="Kaisen Don mit verschiedenem rohem Fisch" width="220" height="218" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Kaisen Don</span></div>
@@ -90,15 +84,14 @@
           <div class="size-select" role="group" aria-label="Größe wählen — Kaisen Don">
             <button type="button" class="size-btn selected" aria-pressed="true">Normal · 15,50 €</button>
             <button type="button" class="size-btn" aria-pressed="false">Groß · 21,80 €</button>
+          <div class="dish-qty" role="group" aria-label="Menge — Kaisen Don">
+            <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+            <input type="number" class="dish-qty-value" id="qty-kaisen-don" value="1" min="1" inputmode="numeric" aria-label="Menge — Kaisen Don">
+            <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
           </div>
-        
+          </div>
           <div class="order-menu" data-dish-name="Kaisen Don">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Kaisen Don">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-kaisen-don" value="1" min="1" inputmode="numeric" aria-label="Menge — Kaisen Don">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -112,15 +105,14 @@
           <div class="size-select" role="group" aria-label="Größe wählen — Roastbeef Don">
             <button type="button" class="size-btn selected" aria-pressed="true">Normal · 13,90 €</button>
             <button type="button" class="size-btn" aria-pressed="false">Groß · 20,00 €</button>
+          <div class="dish-qty" role="group" aria-label="Menge — Roastbeef Don">
+            <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+            <input type="number" class="dish-qty-value" id="qty-roastbeef-don" value="1" min="1" inputmode="numeric" aria-label="Menge — Roastbeef Don">
+            <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
           </div>
-        
+          </div>
           <div class="order-menu" data-dish-name="Roastbeef Don">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Roastbeef Don">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-roastbeef-don" value="1" min="1" inputmode="numeric" aria-label="Menge — Roastbeef Don">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -134,15 +126,14 @@
           <div class="size-select" role="group" aria-label="Größe wählen — Mapo Tofu Don">
             <button type="button" class="size-btn selected" aria-pressed="true">Normal · 13,50 €</button>
             <button type="button" class="size-btn" aria-pressed="false">Groß · 19,60 €</button>
+          <div class="dish-qty" role="group" aria-label="Menge — Mapo Tofu Don">
+            <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+            <input type="number" class="dish-qty-value" id="qty-mapo-tofu-don" value="1" min="1" inputmode="numeric" aria-label="Menge — Mapo Tofu Don">
+            <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
           </div>
-        
+          </div>
           <div class="order-menu" data-dish-name="Mapo Tofu Don">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Mapo Tofu Don">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-mapo-tofu-don" value="1" min="1" inputmode="numeric" aria-label="Menge — Mapo Tofu Don">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -156,40 +147,38 @@
           <div class="size-select" role="group" aria-label="Größe wählen — Cheese Gyūdon">
             <button type="button" class="size-btn selected" aria-pressed="true">Normal · 13,60 €</button>
             <button type="button" class="size-btn" aria-pressed="false">Groß · 19,80 €</button>
+          <div class="dish-qty" role="group" aria-label="Menge — Cheese Gyūdon">
+            <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+            <input type="number" class="dish-qty-value" id="qty-cheese-gyudon" value="1" min="1" inputmode="numeric" aria-label="Menge — Cheese Gyūdon">
+            <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
           </div>
-        
+          </div>
           <div class="order-menu" data-dish-name="Cheese Gyūdon">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Cheese Gyūdon">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-cheese-gyudon" value="1" min="1" inputmode="numeric" aria-label="Menge — Cheese Gyūdon">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
             <p class="order-added" role="status"></p>
           </div>
         </div>
-
         <div class="menu-cat-heading">
           <h2>Süßes</h2>
           <p>Hausgemacht, in kleinen Mengen</p>
         </div>
-
         <div class="menu-row has-photo reveal">
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/matcha_cheesecake.webp" type="image/webp"><img src="assets/thumbs/matcha_cheesecake.jpg" alt="Matcha Cheesecake mit Matcha-Pulver bestäubt" width="157" height="220" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Matcha Cheesecake</span></div>
           <div class="desc"></div>
-          <div class="price">4,00 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">4,00 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Matcha Cheesecake">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-matcha-cheesecake" value="1" min="1" inputmode="numeric" aria-label="Menge — Matcha Cheesecake">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Matcha Cheesecake">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Matcha Cheesecake">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-matcha-cheesecake" value="1" min="1" inputmode="numeric" aria-label="Menge — Matcha Cheesecake">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -200,15 +189,16 @@
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/tofu_pudding.webp" type="image/webp"><img src="assets/thumbs/tofu_pudding.jpg" alt="Tofu Pudding mit schwarzem Zuckersirup" width="220" height="146" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Tofu Pudding</span><span class="tag">Vegan</span></div>
           <div class="desc"></div>
-          <div class="price">3,80 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">3,80 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Tofu Pudding">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-tofu-pudding" value="1" min="1" inputmode="numeric" aria-label="Menge — Tofu Pudding">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Tofu Pudding">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Tofu Pudding">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-tofu-pudding" value="1" min="1" inputmode="numeric" aria-label="Menge — Tofu Pudding">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -219,41 +209,41 @@
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/hojicha_panna_cotta.webp" type="image/webp"><img src="assets/thumbs/hojicha_panna_cotta.jpg" alt="Hojicha Panna Cotta mit Karamell" width="220" height="215" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Hojicha Panna Cotta</span></div>
           <div class="desc"></div>
-          <div class="price">3,80 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">3,80 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Hojicha Panna Cotta">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-hojicha-panna-cotta" value="1" min="1" inputmode="numeric" aria-label="Menge — Hojicha Panna Cotta">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Hojicha Panna Cotta">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Hojicha Panna Cotta">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-hojicha-panna-cotta" value="1" min="1" inputmode="numeric" aria-label="Menge — Hojicha Panna Cotta">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
             <p class="order-added" role="status"></p>
           </div>
         </div>
-
         <div class="menu-cat-heading">
           <h2>Getränke</h2>
           <p>Kaffee, Tee und Softdrinks</p>
         </div>
-
         <div class="menu-subheading">Kaffee</div>
         <div class="menu-row has-photo first-in-group reveal">
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/espresso.webp" type="image/webp"><img src="assets/thumbs/espresso.jpg" alt="Espresso im Glas mit Kaffeebohnen" width="220" height="204" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Espresso</span></div>
           <div class="desc"></div>
-          <div class="price">2,00 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">2,00 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Espresso">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-espresso" value="1" min="1" inputmode="numeric" aria-label="Menge — Espresso">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Espresso">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Espresso">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-espresso" value="1" min="1" inputmode="numeric" aria-label="Menge — Espresso">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -264,15 +254,16 @@
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/cappuccino.webp" type="image/webp"><img src="assets/thumbs/cappuccino.jpg" alt="Cappuccino mit Latte Art von oben" width="220" height="146" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Cappuccino</span></div>
           <div class="desc"></div>
-          <div class="price">3,50 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">3,50 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Cappuccino">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-cappuccino" value="1" min="1" inputmode="numeric" aria-label="Menge — Cappuccino">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Cappuccino">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Cappuccino">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-cappuccino" value="1" min="1" inputmode="numeric" aria-label="Menge — Cappuccino">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -283,15 +274,16 @@
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/black_sugar_iced_latte.webp" type="image/webp"><img src="assets/thumbs/black_sugar_iced_latte.jpg" alt="Black Sugar Iced Latte im Glas" width="220" height="146" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Black Sugar Iced Latte</span></div>
           <div class="desc"></div>
-          <div class="price">4,20 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">4,20 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Black Sugar Iced Latte">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-black-sugar-iced-latte" value="1" min="1" inputmode="numeric" aria-label="Menge — Black Sugar Iced Latte">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Black Sugar Iced Latte">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Black Sugar Iced Latte">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-black-sugar-iced-latte" value="1" min="1" inputmode="numeric" aria-label="Menge — Black Sugar Iced Latte">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -302,15 +294,16 @@
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/matcha_latte.webp" type="image/webp"><img src="assets/thumbs/matcha_latte.jpg" alt="Matcha Latte mit Herz-Latte-Art" width="220" height="220" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Matcha Latte</span><span class="tag">Vegan möglich</span></div>
           <div class="desc"></div>
-          <div class="price">4,20 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">4,20 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Matcha Latte">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-matcha-latte" value="1" min="1" inputmode="numeric" aria-label="Menge — Matcha Latte">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Matcha Latte">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Matcha Latte">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-matcha-latte" value="1" min="1" inputmode="numeric" aria-label="Menge — Matcha Latte">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -321,15 +314,16 @@
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/matcha_iced_latte.webp" type="image/webp"><img src="assets/thumbs/matcha_iced_latte.jpg" alt="Matcha Iced Latte im Glas" width="220" height="220" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Matcha Iced Latte</span><span class="tag">Vegan möglich</span></div>
           <div class="desc"></div>
-          <div class="price">4,40 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">4,40 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Matcha Iced Latte">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-matcha-iced-latte" value="1" min="1" inputmode="numeric" aria-label="Menge — Matcha Iced Latte">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Matcha Iced Latte">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Matcha Iced Latte">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-matcha-iced-latte" value="1" min="1" inputmode="numeric" aria-label="Menge — Matcha Iced Latte">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -340,36 +334,37 @@
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/handbrew.webp" type="image/webp"><img src="assets/thumbs/handbrew.jpg" alt="Handaufguss-Kaffee wird zubereitet" width="220" height="146" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Handbrew</span></div>
           <div class="desc">300 ml, langsam per Filter aufgegossen.</div>
-          <div class="price">6,20 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">6,20 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Handbrew">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-handbrew" value="1" min="1" inputmode="numeric" aria-label="Menge — Handbrew">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Handbrew">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Handbrew">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-handbrew" value="1" min="1" inputmode="numeric" aria-label="Menge — Handbrew">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
             <p class="order-added" role="status"></p>
           </div>
         </div>
-
         <div class="menu-subheading">Tee</div>
         <div class="menu-row has-photo first-in-group reveal">
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/green_tea.webp" type="image/webp"><img src="assets/thumbs/green_tea.jpg" alt="Grüner Tee mit Teekanne und losen Blättern" width="220" height="146" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Green Tea</span></div>
           <div class="desc"></div>
-          <div class="price">3,00 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">3,00 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Green Tea">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-green-tea" value="1" min="1" inputmode="numeric" aria-label="Menge — Green Tea">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Green Tea">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Green Tea">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-green-tea" value="1" min="1" inputmode="numeric" aria-label="Menge — Green Tea">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -380,18 +375,19 @@
           <div class="menu-thumb approx" title="Symbolfoto – entspricht nicht exakt dem servierten Getränk"><picture><source srcset="assets/thumbs/hoji_tea.webp" type="image/webp"><img src="assets/thumbs/hoji_tea.jpg" alt="Symbolfoto: Tee im Glas" width="220" height="146" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Hoji Tea</span></div>
           <div class="desc"></div>
-          <div class="price">
+          <div class="price-qty-row">
+            <div class="price">
             <span class="price-line"><span class="price-label">Heiß</span>3,00 €</span>
             <span class="price-line"><span class="price-label">Eis</span>3,20 €</span>
           </div>
-        
+            <div class="dish-qty" role="group" aria-label="Menge — Hoji Tea">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-hoji-tea" value="1" min="1" inputmode="numeric" aria-label="Menge — Hoji Tea">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Hoji Tea">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Hoji Tea">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-hoji-tea" value="1" min="1" inputmode="numeric" aria-label="Menge — Hoji Tea">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -402,36 +398,37 @@
           <div class="menu-thumb approx" title="Symbolfoto – entspricht nicht exakt dem servierten Getränk"><picture><source srcset="assets/thumbs/yuzuka.webp" type="image/webp"><img src="assets/thumbs/yuzuka.jpg" alt="Symbolfoto: gelbes Erfrischungsgetränk" width="220" height="147" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Yuzuka</span></div>
           <div class="desc">Nur als Eisgetränk erhältlich.</div>
-          <div class="price">4,20 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">4,20 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Yuzuka">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-yuzuka" value="1" min="1" inputmode="numeric" aria-label="Menge — Yuzuka">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Yuzuka">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Yuzuka">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-yuzuka" value="1" min="1" inputmode="numeric" aria-label="Menge — Yuzuka">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
             <p class="order-added" role="status"></p>
           </div>
         </div>
-
         <div class="menu-subheading">Softs</div>
         <div class="menu-row has-photo first-in-group reveal">
           <div class="menu-thumb approx" title="Symbolfoto – entspricht nicht exakt dem servierten Getränk"><picture><source srcset="assets/thumbs/sinalco_cola.webp" type="image/webp"><img src="assets/thumbs/sinalco_cola.jpg" alt="Symbolfoto: Cola-Getränk mit Eis" width="220" height="146" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Sinalco Cola</span></div>
           <div class="desc"></div>
-          <div class="price">2,80 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">2,80 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Sinalco Cola">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-sinalco-cola" value="1" min="1" inputmode="numeric" aria-label="Menge — Sinalco Cola">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Sinalco Cola">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Sinalco Cola">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-sinalco-cola" value="1" min="1" inputmode="numeric" aria-label="Menge — Sinalco Cola">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -442,15 +439,16 @@
           <div class="menu-thumb approx" title="Symbolfoto – entspricht nicht exakt dem servierten Getränk"><picture><source srcset="assets/thumbs/apfelschorle.webp" type="image/webp"><img src="assets/thumbs/apfelschorle.jpg" alt="Symbolfoto: Apfelsaftgetränk" width="220" height="202" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Apfelschorle</span></div>
           <div class="desc"></div>
-          <div class="price">2,80 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">2,80 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Apfelschorle">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-apfelschorle" value="1" min="1" inputmode="numeric" aria-label="Menge — Apfelschorle">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Apfelschorle">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Apfelschorle">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-apfelschorle" value="1" min="1" inputmode="numeric" aria-label="Menge — Apfelschorle">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
@@ -461,30 +459,28 @@
           <div class="menu-thumb"><picture><source srcset="assets/thumbs/wasser.webp" type="image/webp"><img src="assets/thumbs/wasser.jpg" alt="Glas Wasser auf Tisch" width="220" height="146" loading="lazy"></picture></div>
           <div class="name-wrap"><span class="name">Wasser</span></div>
           <div class="desc"></div>
-          <div class="price">2,60 €</div>
-        
+          <div class="price-qty-row">
+            <div class="price">2,60 €</div>
+            <div class="dish-qty" role="group" aria-label="Menge — Wasser">
+              <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
+              <input type="number" class="dish-qty-value" id="qty-wasser" value="1" min="1" inputmode="numeric" aria-label="Menge — Wasser">
+              <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
+            </div>
+          </div>
           <div class="order-menu" data-dish-name="Wasser">
             <div class="dish-order-row">
-              <div class="dish-qty" role="group" aria-label="Menge — Wasser">
-                <button type="button" class="dish-qty-btn" data-qty-action="dec" aria-label="Weniger">−</button>
-                <input type="number" class="dish-qty-value" id="qty-wasser" value="1" min="1" inputmode="numeric" aria-label="Menge — Wasser">
-                <button type="button" class="dish-qty-btn" data-qty-action="inc" aria-label="Mehr">+</button>
-              </div>
               <button type="button" class="dish-add-btn">Bestellen</button>
               <a class="dish-delivery-link" href="https://www.ubereats.com/de" target="_blank" rel="noopener">Auf Uber Eats</a>
             </div>
             <p class="order-added" role="status"></p>
           </div>
         </div>
-
         <p class="menu-note">
           Vegane Optionen sind gekennzeichnet. Lieferung &amp; Abholung verfügbar.
         </p>
-
       </div>
     </div>
   </section>
-
   <section class="block alt" style="text-align:center;">
     <div class="container">
       <h2 style="font-size:1.7rem;">Lieber zuhause genießen?</h2>
@@ -496,7 +492,6 @@
     </div>
   </section>
 </main>
-
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
@@ -529,7 +524,6 @@
     </div>
   </div>
 </footer>
-
-<script src="script.js?v=202609031614"></script>
+<script src="script.js?v=202609031630"></script>
 </body>
 </html>
