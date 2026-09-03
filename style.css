@@ -527,6 +527,13 @@ section.block.alt { background: var(--bone-2); }
 .cart-panel-footer[hidden] { display: none; }
 .cart-total { display: flex; justify-content: space-between; align-items: baseline; font-size: 1rem; }
 .cart-total strong { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.5rem; font-weight: 600; }
+.cart-receipt-email { display: flex; flex-direction: column; gap: 6px; }
+.cart-receipt-email label { font-size: 0.78rem; color: var(--ink-dim); }
+.cart-receipt-email input {
+  font-family: 'Manrope', sans-serif; font-size: 1rem; padding: 10px 12px;
+  border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--surface); color: var(--ink);
+}
+.cart-receipt-email input:focus-visible { outline: 2px solid var(--matcha-deep); outline-offset: 1px; }
 .cart-checkout { width: 100%; min-height: 50px; }
 .cart-checkout:disabled { opacity: 0.5; cursor: not-allowed; }
 
