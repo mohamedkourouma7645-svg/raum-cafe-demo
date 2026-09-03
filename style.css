@@ -403,20 +403,20 @@ section.block.alt { background: var(--bone-2); }
 /* ---------- Sélecteur de quantité par plat : compact, à côté du prix (toujours visible) ---------- */
 .dish-order-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .dish-qty {
-  display: flex; align-items: center; border: 1px solid var(--line-strong);
-  border-radius: 999px; flex-shrink: 0; padding: 1px;
+  display: flex; align-items: center; border: 1.5px solid var(--ink);
+  border-radius: 999px; flex-shrink: 0; padding: 2px; background: var(--surface);
 }
 .dish-qty-btn {
-  width: 26px; height: 26px; min-width: 26px; flex-shrink: 0; border-radius: 50%; border: none; background: transparent;
-  color: var(--ink-dim); font-size: 0.9rem; font-weight: 600; cursor: pointer; touch-action: manipulation;
+  width: 28px; height: 28px; min-width: 28px; flex-shrink: 0; border-radius: 50%; border: none; background: var(--bone-2);
+  color: var(--ink); font-size: 1rem; font-weight: 700; cursor: pointer; touch-action: manipulation;
   display: flex; align-items: center; justify-content: center; line-height: 1;
   transition: background 0.2s var(--ease), color 0.2s var(--ease);
 }
-.dish-qty-btn:hover { background: var(--matcha-pale); color: var(--matcha-deep); }
+.dish-qty-btn:hover { background: var(--matcha-deep); color: var(--bone); }
 .dish-qty-btn:active { transform: scale(0.93); }
 .dish-qty-value {
   width: 30px; min-width: 30px; text-align: center; font-variant-numeric: tabular-nums;
-  font-weight: 600; font-size: 0.8rem; font-family: 'Manrope', sans-serif;
+  font-weight: 700; font-size: 0.88rem; font-family: 'Manrope', sans-serif;
   color: var(--ink); background: transparent; border: none; padding: 0; margin: 0;
   -webkit-appearance: none; -moz-appearance: textfield; appearance: textfield;
 }
