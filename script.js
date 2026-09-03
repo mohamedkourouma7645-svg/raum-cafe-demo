@@ -296,8 +296,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const nummer = erzeugeBestellnummer();
     const anzahl = items.reduce((n, i) => n + i.menge, 0);
     const liste = items
-      .map((i) => i.menge + '× ' + i.name + (i.size ? ' (' + i.size + ')' : ''))
-      .join(', ');
+      .map(
+        (i) =>
+          '<li class="cart-confirm-item">' +
+          '<span class="cart-confirm-item-name">' + i.name + (i.size ? ' <span class="cart-confirm-item-size">(' + i.size + ')</span>' : '') + '</span>' +
+          '<strong class="cart-confirm-item-qty">× ' + i.menge + '</strong>' +
+          '</li>'
+      )
+      .join('');
 
     speichereWarenkorb([]);
     syncAlleDishQty();
@@ -314,7 +320,8 @@ document.addEventListener('DOMContentLoaded', () => {
     confirmEl.innerHTML =
       '<p class="cart-confirm-msg">Bestellung bestätigt — Nummer <strong>#' + nummer + '</strong><br>' +
       'Zeigen Sie diese Nummer an der Kasse.</p>' +
-      '<p class="cart-confirm-list">' + anzahl + ' Artikel: ' + liste + '</p>' +
+      '<p class="cart-confirm-list-label">' + anzahl + ' Artikel:</p>' +
+      '<ul class="cart-confirm-list">' + liste + '</ul>' +
       '<div class="review-prompt" id="cart-review-prompt">' +
       '<p class="review-question">Hoffentlich hat es Ihnen geschmeckt! 😊</p>' +
       '<div class="review-emojis" role="group" aria-label="Wie war Ihr Essen?">' +

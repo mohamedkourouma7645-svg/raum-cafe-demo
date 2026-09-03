@@ -286,6 +286,7 @@ section.block.alt { background: var(--bone-2); }
 .bento-item h3 { font-size: 1.05rem; font-family: 'Manrope', sans-serif; font-weight: 700; margin-bottom: 8px; }
 .bento-item p { color: var(--ink-dim); font-size: 0.92rem; margin: 0; }
 .bento-item .num { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.3rem; color: var(--matcha); display: block; margin-bottom: 14px; }
+.bento-cols-3 { grid-template-columns: repeat(3, 1fr); }
 
 @media (max-width: 920px) {
   .bento { grid-template-columns: repeat(2, 1fr); }
@@ -527,7 +528,12 @@ section.block.alt { background: var(--bone-2); }
 .cart-confirm[hidden] { display: none; }
 .cart-confirm-msg { font-size: 0.95rem; color: var(--matcha-deep); font-weight: 600; line-height: 1.6; margin: 0 0 4px; }
 .cart-confirm-msg strong { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.3rem; }
-.cart-confirm-list { color: var(--ink-dim); font-size: 0.86rem; margin: 0 0 16px; }
+.cart-confirm-list-label { color: var(--ink-dim); font-size: 0.86rem; margin: 0 0 8px; font-weight: 600; }
+.cart-confirm-list { list-style: none; margin: 0 0 16px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.cart-confirm-item { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding: 8px 10px; background: var(--bone-2); border-radius: var(--radius); font-size: 0.92rem; color: var(--ink); }
+.cart-confirm-item-name { flex: 1; }
+.cart-confirm-item-size { color: var(--ink-faint); font-size: 0.82rem; }
+.cart-confirm-item-qty { font-family: 'Cormorant', serif; font-style: italic; font-weight: 700; font-size: 1.1rem; color: var(--matcha-deep); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* ---------- Avis nach der Bestellung ---------- */
 .review-prompt {
