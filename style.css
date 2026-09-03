@@ -348,7 +348,7 @@ section.block.alt { background: var(--bone-2); }
 .menu-row.has-photo .size-select { grid-column: 4; }
 .menu-row.has-photo .price-qty-row { grid-column: 4; }
 .price-qty-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
-.size-select .dish-qty-select { margin-left: 2px; }
+.size-select .dish-counter { margin-left: 2px; }
 
 .menu-thumb {
   width: 84px; height: 84px; border-radius: var(--radius); overflow: hidden; position: relative;
@@ -400,19 +400,25 @@ section.block.alt { background: var(--bone-2); }
 .order-added { margin: 8px 0 0; font-size: 0.8rem; color: var(--matcha-deep); font-weight: 600; display: none; line-height: 1.5; }
 .order-added.show { display: block; }
 
-/* ---------- Sélecteur de quantité par plat : menu déroulant natif, à côté du prix ----------
-   Volontairement un <select> natif plutôt qu'un contrôle personnalisé : rendu 100% géré par
-   le navigateur (pas de flex/appearance custom qui pourrait échouer silencieusement sur une
-   configuration particulière), donc le plus fiable possible tout en restant fonctionnel. */
+/* ---------- Compteur de quantité par plat : même pastille ronde que .size-btn ---------- */
 .dish-order-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.dish-qty-select {
-  min-width: 56px; min-height: 36px; padding: 6px 10px; border-radius: var(--radius);
-  border: 1.5px solid var(--ink); background: var(--surface); color: var(--ink);
-  font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 0.9rem;
-  font-variant-numeric: tabular-nums; cursor: pointer; flex-shrink: 0;
+.dish-counter {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid var(--line-strong); background: var(--surface); border-radius: 999px;
+  padding: 7px 14px; min-height: 44px; flex-shrink: 0;
 }
-.dish-qty-select:hover { border-color: var(--matcha-deep); }
-.dish-qty-select:focus-visible { outline: 2px solid var(--matcha-deep); outline-offset: 2px; }
+.dish-counter-btn {
+  border: none; background: transparent; color: var(--ink-dim); cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-size: 1rem; font-weight: 700; line-height: 1;
+  padding: 0; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center;
+  touch-action: manipulation; transition: color 0.2s var(--ease);
+}
+.dish-counter-btn:hover { color: var(--matcha-deep); }
+.dish-counter-btn:active { transform: scale(0.9); }
+.dish-counter-value {
+  font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--ink);
+  min-width: 14px; text-align: center; font-variant-numeric: tabular-nums;
+}
 .dish-add-btn {
   font-family: 'Manrope', sans-serif; font-size: 0.82rem; font-weight: 700;
   color: var(--bone); background: var(--ink); border: none; border-radius: var(--radius);

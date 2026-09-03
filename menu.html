@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=202609032049">
+<link rel="stylesheet" href="style.css?v=202609032103">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
@@ -84,18 +84,11 @@
           <div class="size-select" role="group" aria-label="Größe wählen — Kaisen Don">
             <button type="button" class="size-btn selected" aria-pressed="true">Normal · 15,50 €</button>
             <button type="button" class="size-btn" aria-pressed="false">Groß · 21,80 €</button>
-          <select class="dish-qty-select" id="qty-kaisen-don" aria-label="Menge — Kaisen Don">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+          <div class="dish-counter" role="group" aria-label="Menge — Kaisen Don">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-kaisen-don" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Kaisen Don">
             <div class="dish-order-row">
@@ -112,18 +105,11 @@
           <div class="size-select" role="group" aria-label="Größe wählen — Roastbeef Don">
             <button type="button" class="size-btn selected" aria-pressed="true">Normal · 13,90 €</button>
             <button type="button" class="size-btn" aria-pressed="false">Groß · 20,00 €</button>
-          <select class="dish-qty-select" id="qty-roastbeef-don" aria-label="Menge — Roastbeef Don">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+          <div class="dish-counter" role="group" aria-label="Menge — Roastbeef Don">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-roastbeef-don" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Roastbeef Don">
             <div class="dish-order-row">
@@ -140,18 +126,11 @@
           <div class="size-select" role="group" aria-label="Größe wählen — Mapo Tofu Don">
             <button type="button" class="size-btn selected" aria-pressed="true">Normal · 13,50 €</button>
             <button type="button" class="size-btn" aria-pressed="false">Groß · 19,60 €</button>
-          <select class="dish-qty-select" id="qty-mapo-tofu-don" aria-label="Menge — Mapo Tofu Don">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+          <div class="dish-counter" role="group" aria-label="Menge — Mapo Tofu Don">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-mapo-tofu-don" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Mapo Tofu Don">
             <div class="dish-order-row">
@@ -168,18 +147,11 @@
           <div class="size-select" role="group" aria-label="Größe wählen — Cheese Gyūdon">
             <button type="button" class="size-btn selected" aria-pressed="true">Normal · 13,60 €</button>
             <button type="button" class="size-btn" aria-pressed="false">Groß · 19,80 €</button>
-          <select class="dish-qty-select" id="qty-cheese-gyudon" aria-label="Menge — Cheese Gyūdon">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+          <div class="dish-counter" role="group" aria-label="Menge — Cheese Gyūdon">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-cheese-gyudon" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Cheese Gyūdon">
             <div class="dish-order-row">
@@ -199,18 +171,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">4,00 €</div>
-            <select class="dish-qty-select" id="qty-matcha-cheesecake" aria-label="Menge — Matcha Cheesecake">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Matcha Cheesecake">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-matcha-cheesecake" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Matcha Cheesecake">
             <div class="dish-order-row">
@@ -226,18 +191,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">3,80 €</div>
-            <select class="dish-qty-select" id="qty-tofu-pudding" aria-label="Menge — Tofu Pudding">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Tofu Pudding">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-tofu-pudding" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Tofu Pudding">
             <div class="dish-order-row">
@@ -253,18 +211,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">3,80 €</div>
-            <select class="dish-qty-select" id="qty-hojicha-panna-cotta" aria-label="Menge — Hojicha Panna Cotta">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Hojicha Panna Cotta">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-hojicha-panna-cotta" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Hojicha Panna Cotta">
             <div class="dish-order-row">
@@ -285,18 +236,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">2,00 €</div>
-            <select class="dish-qty-select" id="qty-espresso" aria-label="Menge — Espresso">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Espresso">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-espresso" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Espresso">
             <div class="dish-order-row">
@@ -312,18 +256,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">3,50 €</div>
-            <select class="dish-qty-select" id="qty-cappuccino" aria-label="Menge — Cappuccino">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Cappuccino">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-cappuccino" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Cappuccino">
             <div class="dish-order-row">
@@ -339,18 +276,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">4,20 €</div>
-            <select class="dish-qty-select" id="qty-black-sugar-iced-latte" aria-label="Menge — Black Sugar Iced Latte">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Black Sugar Iced Latte">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-black-sugar-iced-latte" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Black Sugar Iced Latte">
             <div class="dish-order-row">
@@ -366,18 +296,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">4,20 €</div>
-            <select class="dish-qty-select" id="qty-matcha-latte" aria-label="Menge — Matcha Latte">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Matcha Latte">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-matcha-latte" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Matcha Latte">
             <div class="dish-order-row">
@@ -393,18 +316,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">4,40 €</div>
-            <select class="dish-qty-select" id="qty-matcha-iced-latte" aria-label="Menge — Matcha Iced Latte">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Matcha Iced Latte">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-matcha-iced-latte" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Matcha Iced Latte">
             <div class="dish-order-row">
@@ -420,18 +336,11 @@
           <div class="desc">300 ml, langsam per Filter aufgegossen.</div>
           <div class="price-qty-row">
             <div class="price">6,20 €</div>
-            <select class="dish-qty-select" id="qty-handbrew" aria-label="Menge — Handbrew">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Handbrew">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-handbrew" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Handbrew">
             <div class="dish-order-row">
@@ -448,18 +357,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">3,00 €</div>
-            <select class="dish-qty-select" id="qty-green-tea" aria-label="Menge — Green Tea">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Green Tea">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-green-tea" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Green Tea">
             <div class="dish-order-row">
@@ -478,18 +380,11 @@
             <span class="price-line"><span class="price-label">Heiß</span>3,00 €</span>
             <span class="price-line"><span class="price-label">Eis</span>3,20 €</span>
           </div>
-            <select class="dish-qty-select" id="qty-hoji-tea" aria-label="Menge — Hoji Tea">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Hoji Tea">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-hoji-tea" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Hoji Tea">
             <div class="dish-order-row">
@@ -505,18 +400,11 @@
           <div class="desc">Nur als Eisgetränk erhältlich.</div>
           <div class="price-qty-row">
             <div class="price">4,20 €</div>
-            <select class="dish-qty-select" id="qty-yuzuka" aria-label="Menge — Yuzuka">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Yuzuka">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-yuzuka" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Yuzuka">
             <div class="dish-order-row">
@@ -533,18 +421,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">2,80 €</div>
-            <select class="dish-qty-select" id="qty-sinalco-cola" aria-label="Menge — Sinalco Cola">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Sinalco Cola">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-sinalco-cola" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Sinalco Cola">
             <div class="dish-order-row">
@@ -560,18 +441,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">2,80 €</div>
-            <select class="dish-qty-select" id="qty-apfelschorle" aria-label="Menge — Apfelschorle">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Apfelschorle">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-apfelschorle" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Apfelschorle">
             <div class="dish-order-row">
@@ -587,18 +461,11 @@
           <div class="desc"></div>
           <div class="price-qty-row">
             <div class="price">2,60 €</div>
-            <select class="dish-qty-select" id="qty-wasser" aria-label="Menge — Wasser">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
+            <div class="dish-counter" role="group" aria-label="Menge — Wasser">
+            <button type="button" class="dish-counter-btn" data-counter-action="dec" aria-label="Weniger">−</button>
+            <span class="dish-counter-value" id="counter-wasser" aria-live="polite">0</span>
+            <button type="button" class="dish-counter-btn" data-counter-action="inc" aria-label="Mehr">+</button>
+          </div>
           </div>
           <div class="order-menu" data-dish-name="Wasser">
             <div class="dish-order-row">
@@ -657,7 +524,7 @@
     </div>
   </div>
 </footer>
-<script src="script.js?v=202609032049"></script>
+<script src="script.js?v=202609032103"></script>
 <script type="module" src="components/index.js"></script>
 </body>
 </html>

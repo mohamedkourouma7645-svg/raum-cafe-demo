@@ -100,16 +100,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return { name, size, preis };
   }
 
-  /* Ajoute au panier le plat, à la quantité actuellement choisie dans son menu
-     déroulant (1 à 10 — indique "combien j'ajoute maintenant", pas "combien j'ai
-     déjà dans le panier"). Remet le sélecteur à 1 ensuite, prêt pour un prochain
-     ajout. */
+  /* Ajoute au panier le plat, à la quantité actuellement choisie dans son compteur
+     +/- (indique "combien j'ajoute maintenant", pas "combien j'ai déjà dans le
+     panier"). Le compteur part de 0 : tant qu'il est à 0, "Bestellen" ne fait rien
+     (rien à ajouter). Remet le compteur à 0 après un ajout réussi. */
   function dishAddToCart(orderMenu) {
     const { name, size, preis } = infosPlat(orderMenu);
-    const select = orderMenu.closest('.menu-row')?.querySelector('.dish-qty-select');
-    if (!select) return;
-    let menge = parseInt(select.value, 10);
-    if (isNaN(menge) || menge < 1) menge = 1;
+    const valueEl = orderMenu.closest('.menu-row')?.querySelector('.dish-counter-value');
+    if (!valueEl) return;
+    const menge = parseInt(valueEl.textContent, 10) || 0;
+    if (menge <= 0) return;
 
     const items = ladeWarenkorb();
     const index = items.findIndex((i) => i.name === name && i.size === size);
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (confirmEl) confirmEl.setAttribute('hidden', '');
     renderCartPanel();
 
-    select.value = '1';
+    valueEl.textContent = '0';
 
     const addedEl = orderMenu.querySelector('.order-added');
     if (addedEl) {
@@ -138,8 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function resetAlleDishQty() {
-    document.querySelectorAll('.dish-qty-select').forEach((select) => {
-      select.value = '1';
+    document.querySelectorAll('.dish-counter-value').forEach((valueEl) => {
+      valueEl.textContent = '0';
     });
   }
 
@@ -345,6 +345,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('click', (event) => {
+    const counterBtn = event.target.closest('.dish-counter-btn');
+    if (counterBtn) {
+      const valueEl = counterBtn.closest('.dish-counter')?.querySelector('.dish-counter-value');
+      if (!valueEl) return;
+      const aktuell = parseInt(valueEl.textContent, 10) || 0;
+      const delta = counterBtn.getAttribute('data-counter-action') === 'inc' ? 1 : -1;
+      valueEl.textContent = String(Math.max(0, aktuell + delta));
+      return;
+    }
+
     const addBtn = event.target.closest('.dish-add-btn');
     if (addBtn) {
       const orderMenu = addBtn.closest('.order-menu');
