@@ -39,66 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const LETZTE_BESTELLUNG_KEY = 'raum_letzte_bestellung';
   const VERLAUF_KEY = 'raum_bestell_verlauf';
 
-  /* ---------- Notifications email (EmailJS) ----------
-     Remplacez ces valeurs par celles de votre compte EmailJS (gratuit) :
-     https://www.emailjs.com/ → Email Services (Service ID), Account → General
-     (Public Key). Tant que PUBLIC_KEY vaut 'YOUR_PUBLIC_KEY', aucun email n'est
-     envoyé — le site fonctionne normalement, silencieusement, sans cette
-     fonctionnalité.
-
-     Deux templates distincts sont nécessaires (le champ "To Email" ne peut pas
-     être à la fois fixe et dynamique dans un même template EmailJS) :
-     - EMAILJS_TEMPLATE_ID : notification vendeur — "To Email" = votre adresse fixe.
-     - EMAILJS_CUSTOMER_TEMPLATE_ID : reçu client — "To Email" = {{to_email}}
-       (variable), pour que chaque envoi cible l'adresse tapée par le client. */
-  const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-  const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-  const EMAILJS_CUSTOMER_TEMPLATE_ID = 'YOUR_CUSTOMER_TEMPLATE_ID';
-
-  function sendeEmail(templateId, params) {
-    if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') return; // pas encore configuré
-    if (!templateId || templateId.indexOf('YOUR_') === 0) return; // ce template précis pas encore configuré
-    if (typeof emailjs === 'undefined') return; // SDK pas chargé (ex. hors ligne)
-
-    try {
-      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-      emailjs.send(EMAILJS_SERVICE_ID, templateId, params);
-    } catch (e) {
-      // Un envoi raté ne doit jamais gêner le client : la commande reste
-      // valide de son côté, on log juste l'échec pour le débogage.
-      console.warn('E-mail non envoyé :', e);
-    }
-  }
-
-  function sendeBestellBenachrichtigung(nummer, items) {
-    const itemsText = items
-      .map((i) => i.menge + '× ' + i.name + (i.size ? ' (' + i.size + ')' : ''))
-      .join('\n');
-    sendeEmail(EMAILJS_TEMPLATE_ID, {
-      order_number: nummer,
-      items_list: itemsText,
-      total: formatPreis(warenkorbGesamt(items)),
-      timestamp: new Date().toLocaleString('de-DE'),
-    });
-  }
-
-  /* Reçu optionnel envoyé au client lui-même, seulement s'il a rempli son
-     adresse e-mail au moment de valider — jamais obligatoire. */
-  function sendeKundenBeleg(nummer, items, email) {
-    if (!email) return;
-    const itemsText = items
-      .map((i) => i.menge + '× ' + i.name + (i.size ? ' (' + i.size + ')' : ''))
-      .join('\n');
-    sendeEmail(EMAILJS_CUSTOMER_TEMPLATE_ID, {
-      to_email: email,
-      order_number: nummer,
-      items_list: itemsText,
-      total: formatPreis(warenkorbGesamt(items)),
-      timestamp: new Date().toLocaleString('de-DE'),
-    });
-  }
-
   function ladeWarenkorb() {
     try {
       return JSON.parse(sessionStorage.getItem(WARENKORB_KEY) || '[]');
@@ -358,15 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
           '</li>'
       )
       .join('');
-
-    sendeBestellBenachrichtigung(nummer, items);
-
-    const emailInput = document.getElementById('cart-email');
-    const kundenEmail = emailInput ? emailInput.value.trim() : '';
-    if (kundenEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(kundenEmail)) {
-      sendeKundenBeleg(nummer, items, kundenEmail);
-    }
-    if (emailInput) emailInput.value = '';
 
     speichereWarenkorb([]);
     resetAlleDishQty();
