@@ -2,7 +2,7 @@
 // Stratégie : "cache d'abord" pour tout ce qui vient du même site (pages, CSS, JS, images).
 // Les polices Google restent gérées par le cache HTTP normal du navigateur.
 
-const CACHE_VERSION = 'raum-v6';
+const CACHE_VERSION = 'raum-v7';
 const CORE_ASSETS = [
   'index.html',
   'menu.html',
