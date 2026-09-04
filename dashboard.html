@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>RAUM — Bestellungen</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=202609041057">
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="dashboard-body">
+
+<header class="dash-header">
+  <div class="dash-header-title">
+    <span class="eyebrow">RAUM</span>
+    <h1>Bestellungen</h1>
+  </div>
+  <div class="dash-status" id="dash-status">
+    <span class="dash-status-dot" id="dash-status-dot"></span>
+    <span id="dash-status-text">Verbindung…</span>
+  </div>
+</header>
+
+<main class="dash-main">
+  <p class="dash-empty" id="dash-empty" hidden>Keine offenen Bestellungen.</p>
+  <ul class="dash-orders" id="dash-orders"></ul>
+</main>
+
+<script type="module" src="dashboard.js"></script>
+</body>
+</html>

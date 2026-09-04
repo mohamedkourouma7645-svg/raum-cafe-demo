@@ -289,6 +289,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const nummer = erzeugeBestellnummer();
     const anzahl = items.reduce((n, i) => n + i.menge, 0);
+
+    if (window.RAUM_ORDER_SYNC) {
+      window.RAUM_ORDER_SYNC.sendOrder({ nummer, items, gesamt: warenkorbGesamt(items) });
+    }
     const liste = items
       .map(
         (i) =>
