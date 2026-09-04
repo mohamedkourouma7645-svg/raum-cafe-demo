@@ -10,11 +10,22 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=202609041147">
+<link rel="stylesheet" href="style.css?v=202609041540">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
+<div class="cookie-banner" id="cookie-banner" hidden>
+  <p class="cookie-banner-text">
+    Wir verwenden nur technisch notwendige Cookies bzw. lokale Speicherung auf Ihrem Ger&auml;t —
+    unter anderem, um diese Auswahl zu merken. Mehr dazu in unserer
+    <a href="datenschutz.html">Datenschutzerkl&auml;rung</a>.
+  </p>
+  <div class="cookie-banner-actions">
+    <button type="button" class="btn btn-line" id="cookie-decline">Ablehnen</button>
+    <button type="button" class="btn btn-solid" id="cookie-accept">Akzeptieren</button>
+  </div>
+</div>
 <div class="cart-scrim" id="cart-scrim" hidden></div>
 <div class="cart-panel" id="cart-panel" hidden role="dialog" aria-modal="true" aria-labelledby="cart-panel-title">
   <div class="cart-panel-handle"></div>
@@ -405,7 +416,7 @@
     </div>
   </div>
 </footer>
-<script src="script.js?v=202609041147"></script>
+<script src="script.js?v=202609041540"></script>
 <script type="module" src="components/index.js"></script>
 <script type="module" src="order-sync.js"></script>
 </body>

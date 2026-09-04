@@ -7,11 +7,22 @@
 <meta name="description" content="Datenschutz-Hinweis zu dieser Konzept-Demo-Website von RAUM.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=202609041147">
+<link rel="stylesheet" href="style.css?v=202609041540">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
+<div class="cookie-banner" id="cookie-banner" hidden>
+  <p class="cookie-banner-text">
+    Wir verwenden nur technisch notwendige Cookies bzw. lokale Speicherung auf Ihrem Ger&auml;t —
+    unter anderem, um diese Auswahl zu merken. Mehr dazu in unserer
+    <a href="datenschutz.html">Datenschutzerkl&auml;rung</a>.
+  </p>
+  <div class="cookie-banner-actions">
+    <button type="button" class="btn btn-line" id="cookie-decline">Ablehnen</button>
+    <button type="button" class="btn btn-solid" id="cookie-accept">Akzeptieren</button>
+  </div>
+</div>
 <button type="button" class="order-badge" id="order-badge" hidden aria-haspopup="dialog">
   <span class="order-badge-icon" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
@@ -74,23 +85,92 @@
 
   <section class="block">
     <div class="container-text">
+      <div class="info-card reveal" style="margin-bottom:24px;">
+        <p style="margin:0;">
+          Diese Website ist eine <strong>Konzept-Demo</strong> und keine offizielle Seite von
+          RAUM. Die folgende Datenschutzerklärung beschreibt dennoch ernsthaft und vollständig,
+          welche Daten diese konkrete Website tatsächlich verarbeitet — so, wie es eine echte
+          Website eines Cafés tun würde.
+        </p>
+      </div>
+
       <div class="info-card reveal">
+        <h3 style="font-size:1.05rem;">1. Verantwortlicher</h3>
         <p>
-          Diese Website ist eine <strong>Konzept-Demo</strong> und keine offizielle Seite
-          von RAUM. Sie erhebt, speichert oder verarbeitet keine echten personenbezogenen
-          Daten.
+          Verantwortlich im Sinne der Datenschutz-Grundverordnung (DSGVO) für diese Website ist
+          der Betreiber von RAUM, Münsterstraße 11, 40477 Düsseldorf. Anfragen zum Datenschutz
+          nehmen wir über das Kontaktformular auf der Seite „Kontakt“ entgegen.
         </p>
+
+        <h3 style="font-size:1.05rem;">2. Hosting</h3>
         <p>
-          Das Kontaktformular auf der Seite „Kontakt“ überträgt aktuell keine Daten an
-          einen Server — es handelt sich um eine reine Demo-Funktion. Eine vollständige
-          Datenschutzerklärung nach Art. 13 DSGVO würde an dieser Stelle für die
-          tatsächliche Website des Unternehmens veröffentlicht.
+          Diese Website wird über GitHub Pages (GitHub, Inc.) gehostet. Beim Aufruf jeder Seite
+          verarbeitet GitHub automatisch technische Zugriffsdaten (z. B. IP-Adresse, Datum und
+          Uhrzeit des Zugriffs, aufgerufene Seite, verwendeter Browser), wie es bei jedem
+          Webserver technisch notwendig ist. Diese Daten dienen ausschließlich dem sicheren und
+          stabilen Betrieb der Website und werden von uns nicht ausgewertet. Näheres regelt die
+          Datenschutzerklärung von GitHub.
         </p>
+
+        <h3 style="font-size:1.05rem;">3. Cookies &amp; lokale Speicherung</h3>
         <p>
-          Die Bestellnummer und eine eventuelle Rückmeldung zum Bestellerlebnis (Menü-Seite)
-          werden ausschließlich im <em>Session Storage</em> Ihres Browsers gespeichert — sie
-          verlassen niemals Ihr Gerät und werden automatisch gelöscht, sobald Sie den Tab
-          schließen.
+          Diese Website setzt keine Marketing- oder Tracking-Cookies. Sie verwendet lediglich
+          technisch notwendige, lokale Speicherung direkt in Ihrem Browser (<em>Local Storage</em>
+          und <em>Session Storage</em>), unter anderem für:
+        </p>
+        <ul class="info-list">
+          <li><span>Ihre Cookie-Auswahl</span><span>Local Storage</span></li>
+          <li><span>Bestellnummer &amp; Bestellverlauf dieses Besuchs</span><span>Session Storage</span></li>
+          <li><span>Offline-Zwischenspeicher der Seiten</span><span>Service Worker Cache</span></li>
+        </ul>
+        <p>
+          Diese Daten verlassen zu keinem Zeitpunkt Ihr Gerät und werden von uns nicht
+          eingesehen. Eine Einwilligung ist dafür nach § 25 Abs. 2 TTDSG rechtlich nicht
+          erforderlich; wir zeigen den Hinweis dennoch zur Transparenz an. Ihre Auswahl im
+          Cookie-Banner selbst wird ebenfalls lokal in Ihrem Browser gespeichert, damit der
+          Hinweis nicht bei jedem Besuch erneut erscheint.
+        </p>
+
+        <h3 style="font-size:1.05rem;">4. Google Fonts</h3>
+        <p>
+          Diese Website lädt die Schriftarten „Cormorant“ und „Manrope“ direkt von den Servern
+          von Google (Google Ireland Limited). Dabei wird Ihre IP-Adresse an Google übertragen,
+          damit die Schrift ausgeliefert werden kann. Weitere Informationen finden Sie in der
+          Datenschutzerklärung von Google.
+        </p>
+
+        <h3 style="font-size:1.05rem;">5. Kontaktformular</h3>
+        <p>
+          Das Kontaktformular auf der Seite „Kontakt“ überträgt aktuell keine Daten an einen
+          Server — es handelt sich um eine reine Demo-Funktion. Bei einer echten Website würden
+          die eingegebenen Daten (Name, E-Mail-Adresse, Nachricht) ausschließlich zur Bearbeitung
+          Ihrer Anfrage verarbeitet und nicht an Dritte weitergegeben.
+        </p>
+
+        <h3 style="font-size:1.05rem;">6. Bestellsystem</h3>
+        <p>
+          Das Online-Bestellsystem dieser Website ist derzeit deaktiviert. Sollte es künftig
+          wieder aktiviert werden, würden bei einer Bestellung Ihr angegebener Name, die
+          bestellten Gerichte und die Uhrzeit der Bestellung in einer Firebase-Datenbank (Google
+          Ireland Limited) gespeichert — ausschließlich, damit das Café die Bestellung bearbeiten
+          kann. Eine Weitergabe an Dritte oder eine Nutzung zu Werbezwecken würde nicht
+          stattfinden.
+        </p>
+
+        <h3 style="font-size:1.05rem;">7. Ihre Rechte</h3>
+        <p>
+          Sie haben jederzeit das Recht auf Auskunft über die zu Ihrer Person gespeicherten
+          Daten (Art. 15 DSGVO), auf Berichtigung (Art. 16 DSGVO), auf Löschung (Art. 17 DSGVO),
+          auf Einschränkung der Verarbeitung (Art. 18 DSGVO), auf Datenübertragbarkeit
+          (Art. 20 DSGVO) sowie auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Zudem
+          steht Ihnen ein Beschwerderecht bei der zuständigen Datenschutzaufsichtsbehörde zu.
+        </p>
+
+        <h3 style="font-size:1.05rem;">8. Änderungen dieser Erklärung</h3>
+        <p style="margin:0;">
+          Wir passen diese Datenschutzerklärung an, sobald sich die auf dieser Website
+          eingesetzten Funktionen ändern. Es gilt die jeweils aktuelle, auf dieser Seite
+          veröffentlichte Fassung.
         </p>
       </div>
     </div>
@@ -130,7 +210,7 @@
   </div>
 </footer>
 
-<script src="script.js?v=202609041147"></script>
+<script src="script.js?v=202609041540"></script>
 <script type="module" src="components/index.js"></script>
 <script type="module" src="order-sync.js"></script>
 </body>

@@ -8,6 +8,42 @@ if ('serviceWorker' in navigator) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  /* ---------- Cookie-Banner ---------- */
+  const cookieBanner = document.getElementById('cookie-banner');
+  if (cookieBanner) {
+    const COOKIE_CONSENT_KEY = 'raum_cookie_consent';
+    let consent = null;
+    try {
+      consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+    } catch (e) {
+      consent = null;
+    }
+
+    if (!consent) {
+      cookieBanner.removeAttribute('hidden');
+      requestAnimationFrame(() => {
+        cookieBanner.classList.add('show');
+        document.body.classList.add('cookie-banner-open');
+      });
+    }
+
+    const setCookieConsent = (value) => {
+      try {
+        localStorage.setItem(COOKIE_CONSENT_KEY, value);
+      } catch (e) {
+        /* localStorage indisponible — le bandeau réapparaîtra au prochain chargement */
+      }
+      cookieBanner.classList.remove('show');
+      document.body.classList.remove('cookie-banner-open');
+      window.setTimeout(() => cookieBanner.setAttribute('hidden', ''), 400);
+    };
+
+    const cookieAcceptBtn = document.getElementById('cookie-accept');
+    const cookieDeclineBtn = document.getElementById('cookie-decline');
+    if (cookieAcceptBtn) cookieAcceptBtn.addEventListener('click', () => setCookieConsent('accepted'));
+    if (cookieDeclineBtn) cookieDeclineBtn.addEventListener('click', () => setCookieConsent('declined'));
+  }
+
   /* ---------- Menu mobile ---------- */
   const toggle = document.querySelector('.nav-toggle');
   const navInner = document.querySelector('.nav-inner');
