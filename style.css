@@ -619,6 +619,24 @@ section.block.alt { background: var(--bone-2); }
   .cookie-banner-actions .btn { flex: 1; }
 }
 
+/* ---------- Bouton téléphone flottant ---------- */
+.phone-fab {
+  position: fixed; left: 20px; bottom: 20px; z-index: 46;
+  width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0;
+  background: var(--matcha-deep); color: var(--bone);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--shadow); text-decoration: none;
+  transition: transform 0.2s var(--ease), bottom 0.3s var(--ease), background 0.2s var(--ease);
+}
+.phone-fab svg { width: 24px; height: 24px; }
+.phone-fab:hover { background: var(--ink); transform: scale(1.06); }
+.phone-fab:active { transform: scale(0.94); }
+body.cookie-banner-open .phone-fab { bottom: 100px; }
+@media (max-width: 640px) {
+  .phone-fab { left: 16px; bottom: 16px; width: 52px; height: 52px; }
+  body.cookie-banner-open .phone-fab { bottom: 148px; }
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
