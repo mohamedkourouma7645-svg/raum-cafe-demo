@@ -283,15 +283,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 350);
   }
 
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
   function checkoutWarenkorb() {
     const items = ladeWarenkorb();
     if (items.length === 0) return;
+
+    const nameInput = document.getElementById('cart-name');
+    const nameErrorEl = document.getElementById('cart-name-error');
+    const name = nameInput ? nameInput.value.trim() : '';
+
+    if (!name) {
+      if (nameInput) {
+        nameInput.classList.add('invalid');
+        nameInput.focus();
+      }
+      if (nameErrorEl) nameErrorEl.removeAttribute('hidden');
+      return;
+    }
+    if (nameInput) nameInput.classList.remove('invalid');
+    if (nameErrorEl) nameErrorEl.setAttribute('hidden', '');
 
     const nummer = erzeugeBestellnummer();
     const anzahl = items.reduce((n, i) => n + i.menge, 0);
 
     if (window.RAUM_ORDER_SYNC) {
-      window.RAUM_ORDER_SYNC.sendOrder({ nummer, items, gesamt: warenkorbGesamt(items) });
+      window.RAUM_ORDER_SYNC.sendOrder({ nummer, items, gesamt: warenkorbGesamt(items), name });
     }
     const liste = items
       .map(
@@ -305,6 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     speichereWarenkorb([]);
     resetAlleDishQty();
+    if (nameInput) nameInput.value = '';
 
     const confirmEl = document.getElementById('cart-confirm');
     const itemsEl = document.getElementById('cart-items');
@@ -317,6 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     confirmEl.innerHTML =
       '<p class="cart-confirm-msg">Bestellung bestätigt — Nummer <strong>#' + nummer + '</strong><br>' +
+      'Name: ' + escapeHtml(name) + '<br>' +
       'Zeigen Sie diese Nummer an der Kasse.</p>' +
       '<p class="cart-confirm-list-label">' + anzahl + ' Artikel:</p>' +
       '<ul class="cart-confirm-list">' + liste + '</ul>' +
@@ -340,6 +363,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   aktualisiereBestellBadge();
+
+  const cartNameInput = document.getElementById('cart-name');
+  if (cartNameInput) {
+    cartNameInput.addEventListener('input', () => {
+      cartNameInput.classList.remove('invalid');
+      const nameErrorEl = document.getElementById('cart-name-error');
+      if (nameErrorEl) nameErrorEl.setAttribute('hidden', '');
+    });
+  }
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {

@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=202609041057">
+<link rel="stylesheet" href="style.css?v=202609041147">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
@@ -38,6 +38,11 @@
     <div class="cart-confirm" id="cart-confirm" hidden></div>
   </div>
   <div class="cart-panel-footer" id="cart-footer">
+    <div class="cart-name-field">
+      <label for="cart-name">Vollst&auml;ndiger Name <span aria-hidden="true">*</span></label>
+      <input type="text" id="cart-name" autocomplete="name" placeholder="Vor- und Nachname" required>
+      <p class="cart-name-error" id="cart-name-error" hidden>Bitte geben Sie Ihren vollst&auml;ndigen Namen ein.</p>
+    </div>
     <div class="cart-total"><span>Gesamt</span><strong id="cart-total-amount">0,00 &euro;</strong></div>
     <button type="button" class="btn btn-solid cart-checkout" id="cart-checkout" disabled>Bestellung aufgeben</button>
   </div>
@@ -524,7 +529,7 @@
     </div>
   </div>
 </footer>
-<script src="script.js?v=202609041057"></script>
+<script src="script.js?v=202609041147"></script>
 <script type="module" src="components/index.js"></script>
 <script type="module" src="order-sync.js"></script>
 </body>

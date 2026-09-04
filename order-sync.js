@@ -11,10 +11,11 @@ import {
 } from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js';
 
 window.RAUM_ORDER_SYNC = {
-  async sendOrder({ nummer, items, gesamt }) {
+  async sendOrder({ nummer, items, gesamt, name }) {
     try {
       await addDoc(collection(db, 'orders'), {
         nummer,
+        name,
         items: items.map((i) => ({
           name: i.name,
           size: i.size || null,

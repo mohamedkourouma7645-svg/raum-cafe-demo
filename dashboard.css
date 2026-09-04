@@ -50,6 +50,11 @@
   100% { box-shadow: var(--shadow-sm); }
 }
 
+.dash-order-name {
+  font-family: 'Manrope', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--ink);
+  margin: -4px 0 0;
+}
+
 .dash-order-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .dash-order-number {
   font-family: 'Cormorant', serif; font-style: italic; font-weight: 600; font-size: 1.6rem; color: var(--matcha-deep);

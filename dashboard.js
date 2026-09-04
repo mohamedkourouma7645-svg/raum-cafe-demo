@@ -62,6 +62,7 @@ function renderOrder(orderDoc) {
     '<span class="dash-order-number">#' + data.nummer + '</span>' +
     '<span class="dash-order-time">' + formatUhrzeit(data.createdAt) + '</span>' +
     '</div>' +
+    (data.name ? '<p class="dash-order-name">' + escapeHtml(data.name) + '</p>' : '') +
     '<ul class="dash-order-items">' + itemsHtml + '</ul>' +
     '<button type="button" class="dash-order-done" data-id="' + orderDoc.id + '">Erledigt</button>';
 
